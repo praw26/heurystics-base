@@ -31,6 +31,7 @@ import '../styles/slack.css';
       </div>
       <div class="hero-visual fade-up delay-4">
         <SlackChat client:visible />
+        <p class="slack-caption">This is what your operations look like when they run themselves. Works with whatever tools your team already uses.</p>
       </div>
     </div>
   </section>
@@ -39,7 +40,7 @@ import '../styles/slack.css';
   <section class="section stat-section">
     <div class="container stat-center fade-up">
       <span class="stat-big">$250K</span>
-      <p class="stat-desc">leaked annually in commission errors by the average 100-agent brokerage.</p>
+      <p class="stat-desc">leaked annually in commission and closing errors by the average mid-size real estate firm.</p>
       <p class="stat-sub mono">2–5% of gross revenue. Caught by nobody. Until now.</p>
     </div>
   </section>
@@ -53,6 +54,10 @@ import '../styles/slack.css';
         We don't sell software you have to figure out. We take over the workflow,
         you see the results, and you only keep paying if the numbers prove it's working.
       </p>
+      <div class="founding-banner fade-up delay-3">
+        <span class="founding-label mono">Founding partner pricing</span>
+        <span class="founding-text">We're offering reduced pilot rates to our first 10 clients in exchange for a case study if it works.</span>
+      </div>
 
       <div class="outcome-cards">
         <!-- Card 1: Operations on Autopilot -->
@@ -200,17 +205,17 @@ import '../styles/slack.css';
         <a href="/work#case-1" class="proof-card fade-up">
           <span class="proof-stat stat-number">$100M+</span>
           <span class="proof-title">20% revenue lift per customer visit</span>
-          <span class="proof-desc">10-location regulated retail chain. We unified their operations and added AI recommendations. Customers spent 20% more per visit. Wait times dropped 30%.</span>
+          <span class="proof-desc">10-location regulated retail chain. Same pattern as real estate: multi-location ops, compliance, high-volume transactions. Customers spent 20% more. Wait times dropped 30%.</span>
         </a>
         <a href="/work#case-2" class="proof-card fade-up delay-1">
           <span class="proof-stat stat-number">650</span>
           <span class="proof-title">650 customers running autonomous operations</span>
-          <span class="proof-desc">Fully autonomous content pipeline. 50 real estate companies. 3,000+ workflows completed without human intervention. 4-6 hours saved per task.</span>
+          <span class="proof-desc">Fully autonomous operations pipeline. 50 of these customers are real estate companies. 3,000+ workflows completed without anyone touching them.</span>
         </a>
         <a href="/work#case-3" class="proof-card fade-up delay-2">
           <span class="proof-stat stat-number">1.83x</span>
           <span class="proof-title">83% more revenue from the same ad budget</span>
-          <span class="proof-desc">$1.5B electronics manufacturer. Same $5M budget, 1.83x the return. We found which channels were burning money and reallocated.</span>
+          <span class="proof-desc">$1.5B manufacturer. We found where money was being wasted and stopped it — same approach we take with operational costs in real estate.</span>
         </a>
       </div>
     </div>
@@ -226,6 +231,7 @@ import '../styles/slack.css';
   .hero-em { color: var(--ochre); font-style: italic; }
   .hero-body { margin-top: 20px; }
   .hero-buttons { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .slack-caption { font-size: 12px; color: var(--sandstone); text-align: center; margin-top: 12px; font-style: italic; }
 
   .stat-section { padding: 80px 0; }
   .stat-center { text-align: center; }
@@ -233,7 +239,11 @@ import '../styles/slack.css';
   .stat-desc { font-size: 18px; color: var(--navy); margin-top: 12px; max-width: 540px; margin-inline: auto; }
   .stat-sub { font-size: 12px; color: var(--sandstone); margin-top: 8px; }
 
-  .section-sub { max-width: 640px; margin-top: 12px; margin-bottom: 48px; }
+  .section-sub { max-width: 640px; margin-top: 12px; margin-bottom: 24px; }
+
+  .founding-banner { display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--ochre-soft); border-radius: 3px; border-left: 3px solid var(--ochre); margin-bottom: 48px; max-width: 640px; }
+  .founding-label { font-size: 11px; color: var(--ochre); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+  .founding-text { font-size: 13px; color: var(--driftwood); }
 
   /* Outcome cards — 2x2 grid */
   .outcome-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
