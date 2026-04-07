@@ -1,0 +1,250 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTABlock from '../components/CTABlock.astro';
+
+const useCases = [
+  {
+    num: '01', title: 'Transaction coordination', short: 'Zero missed deadlines', time: '2-3 weeks',
+    what: 'Reads incoming contracts (PDF/email), extracts ALL deadlines and parties. Creates live timeline per deal. Sends escalating reminders: gentle nudge \u2192 urgent \u2192 broker escalation. Flags missing signatures, unusual clauses, incomplete disclosures. Post-closing: audits file for completeness.',
+    pain: 'Every real estate deal has 10-15 critical deadlines. A mid-size brokerage running 40 concurrent transactions tracks 400-600 deadlines manually. Transaction coordinators spend 20-25 hours/week chasing documents. One missed deadline can collapse a deal worth $10K-50K in commission.',
+    tech: 'DocuSign API \u00b7 email parser \u00b7 CRM connector (Follow Up Boss, kvCORE) \u00b7 calendar integration',
+  },
+  {
+    num: '02', title: 'Commission reconciliation', short: 'Every split verified', time: '3-4 weeks',
+    what: 'Reads executed contracts and closing statements. Looks up each agent\u2019s commission plan including all overrides, caps, team shares. Calculates exact splits. Cross-checks against title company disbursements. Flags discrepancies BEFORE money moves. Generates accounting entries for QuickBooks/Xero. Monthly P&L by agent/team/office.',
+    pain: 'Every deal has a unique commission split. With bonuses, caps, team splits, and overrides, a 100-agent brokerage has hundreds of unique structures. Commission errors average 2-5% of gross revenue \u2014 for a $5M brokerage, $100K-250K/year leaked. 56% of firms cite financial/operational challenges as top concern.',
+    tech: 'QuickBooks/Xero API \u00b7 CRM connector \u00b7 email parser \u00b7 title company portal',
+  },
+  {
+    num: '03', title: 'Listing launch automation', short: 'Signed to launched in minutes', time: '2 weeks',
+    what: 'Triggered when listing agreement is signed. Drafts MLS description from property details + comps. Schedules photographer from preferred vendor list. Generates social posts (IG/FB/LinkedIn). Creates segmented email campaigns. Builds property landing page. Sets price reduction reviews at 14/21/30 days.',
+    pain: 'When agent signs a new listing, 15-20 tasks must happen in sequence. A busy agent doing 3-4 listings/month loses 8-10 hours of admin per listing. Delayed launches mean fewer showing days \u2014 NAR data shows first 2 weeks are critical.',
+    tech: 'MLS API \u00b7 Canva/design templates \u00b7 Mailchimp/ActiveCampaign \u00b7 social APIs \u00b7 CRM trigger',
+  },
+  {
+    num: '04', title: 'Compliance & risk monitoring', short: '$50K-500K violation avoided', time: '3-4 weeks',
+    what: 'Continuous monitoring of fair housing laws, disclosure requirements, advertising rules, license renewals, E&O insurance. Scans all agent-generated content for compliance. Tracks regulatory changes. Generates audit-ready reports.',
+    pain: 'One fair housing violation means $50K-500K in fines and legal costs. Most brokerages rely on periodic manual audits \u2014 they find problems AFTER they\u2019ve become expensive. Rising regulatory complexity from NAR settlement changes.',
+    tech: 'Regulatory database connector \u00b7 content scanner \u00b7 alert system \u00b7 reporting engine',
+  },
+  {
+    num: '05', title: 'CRM data enrichment & lead intel', short: 'Stale data \u2192 scored leads', time: '2 weeks',
+    what: 'Enriches stale CRM contacts with current data. Scores leads based on behavioral signals. Identifies which contacts are most likely to transact in next 90 days. Surfaces re-engagement opportunities from dormant database.',
+    pain: 'Most CRM databases are 60%+ stale data. Agents waste time calling dead leads while hot prospects go unnoticed. Converting even 2 additional leads/month from enriched data = $10K-30K in additional commission.',
+    tech: 'CRM API \u00b7 data enrichment services \u00b7 behavioral scoring model',
+  },
+  {
+    num: '06', title: 'Property management operations', short: 'Maintenance to rent collection', time: '4-6 weeks',
+    what: 'Automates maintenance request triage, lease renewal workflows, rent collection reminders, vendor coordination, and tenant communication across multi-unit portfolios.',
+    pain: 'Property management is coordination-heavy \u2014 maintenance requests, lease expirations, rent collection, vendor scheduling across dozens or hundreds of units. Each task is small but the volume creates operational drag.',
+    tech: 'Property management system API \u00b7 vendor database \u00b7 tenant communication \u00b7 payment tracking',
+  },
+  {
+    num: '07', title: 'Comparative market analysis', short: '12-20 hrs/week saved for agents', time: '2 weeks',
+    what: 'Generates CMAs from MLS data, recent sales, market trends, and property characteristics. Produces presentation-ready reports. Updates automatically as new comps become available.',
+    pain: 'A busy listing agent spends 12-20 hours/week researching comps and building CMAs manually. The data is available \u2014 the assembly is what takes time.',
+    tech: 'MLS API \u00b7 comparable sales database \u00b7 report generation \u00b7 market data feeds',
+  },
+  {
+    num: '08', title: 'Brokerage intelligence & reporting', short: 'Agent performance + churn risk', time: '3-4 weeks',
+    what: 'Daily dashboard of agent performance, pipeline health, revenue forecasts, and churn risk indicators. Identifies agents showing early signs of dissatisfaction or underperformance. Weekly digest to managing broker.',
+    pain: 'Preventing one agent departure saves $10K-25K in recruiting and onboarding costs. Most brokerages don\u2019t know an agent is leaving until they\u2019ve already signed with a competitor.',
+    tech: 'CRM data \u00b7 transaction history \u00b7 communication patterns \u00b7 performance benchmarks',
+  },
+];
+
+const comparisonRows = [
+  { cap: 'Deployment', us: 'On your servers', them: 'Cloud only' },
+  { cap: 'System integration', us: '50+ services, autonomous', them: 'Single application' },
+  { cap: 'Memory & state', us: 'Days and weeks', them: 'Session dies on close' },
+  { cap: 'Execution model', us: 'Plans, acts, escalates', them: 'Suggests, waits' },
+  { cap: 'Concurrent workflows', us: '40+ simultaneously', them: 'One at a time' },
+  { cap: 'Data sovereignty', us: 'Never leaves environment', them: 'Sent to cloud' },
+];
+
+const painStats = [
+  { stat: '40 deals', desc: 'running concurrently at a mid-size brokerage', pain: 'tracked in spreadsheets' },
+  { stat: '20-25 hrs/week', desc: 'spent by transaction coordinators', pain: 'chasing documents and sending reminders' },
+  { stat: '2-5% of revenue', desc: 'leaked through commission errors annually', pain: '$100K-250K for a $5M brokerage' },
+  { stat: '8-10 hrs per listing', desc: 'lost to admin coordination', pain: 'photographer, MLS, social, email, vendors' },
+];
+---
+
+<BaseLayout
+  title="Real Estate Operations — Heurystics"
+  description="8 operational outcomes for real estate platforms. Fewer missed deadlines, recovered commission revenue, faster listing launches, and reduced compliance risk."
+>
+
+  <!-- Hero -->
+  <section class="section section-navy re-hero">
+    <div class="container">
+      <h1 class="fade-up re-hero-h1">$3.8 trillion industry. 72% cite operations as their #1 growth blocker.</h1>
+      <p class="lead fade-up delay-1" style="color: rgba(255,255,255,0.45); max-width: 640px; margin-top: 16px;">
+        We studied where the money leaks, the time disappears, and the deals collapse. Eight specific problems. Eight measurable outcomes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pain Points -->
+  <section class="section">
+    <div class="container">
+      <div class="pain-grid">
+        {painStats.map((item, i) => (
+          <div class={`pain-card fade-up delay-${i + 1}`}>
+            <span class="pain-stat stat-number">{item.stat}</span>
+            <span class="pain-desc">{item.desc}</span>
+            <span class="pain-line"><em>{item.pain}</em></span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Eight Use Cases -->
+  <section class="section">
+    <div class="container">
+      <h2 class="fade-up">Eight problems your customers stop having.</h2>
+      <p class="lead section-sub fade-up delay-1">
+        Each one delivers a measurable outcome in weeks. Click any card to see what changes for your customers and what it means for your platform revenue.
+      </p>
+
+      <div class="uc-grid">
+        {useCases.map((uc) => (
+          <div class="uc-card card fade-up" data-uc>
+            <div class="uc-header">
+              <span class="uc-num mono">{uc.num}</span>
+              <div>
+                <h4 class="uc-title">{uc.title}</h4>
+                <span class="uc-short">{uc.short}</span>
+              </div>
+              <span class="deploy-time">{uc.time}</span>
+              <button class="uc-toggle" aria-label="Expand">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+            </div>
+            <div class="uc-expanded">
+              <div class="uc-detail">
+                <h5>What the agent does</h5>
+                <p>{uc.what}</p>
+              </div>
+              <div class="uc-detail">
+                <h5>The pain this solves</h5>
+                <p>{uc.pain}</p>
+              </div>
+              <div class="uc-tech mono">{uc.tech}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Copilot Comparison -->
+  <section class="section">
+    <div class="container">
+      <h2 class="fade-up">Why "just add Copilot" won't deliver these outcomes.</h2>
+      <p class="lead section-sub fade-up delay-1" style="max-width: 720px;">
+        Your customers don't need an assistant that helps draft one email at a time. They need
+        40 concurrent deals watched simultaneously, deadlines tracked across days, and overdue items
+        escalated before anyone asks. That's the difference between a chatbot and autonomous operations.
+      </p>
+
+      <div class="comp-table fade-up delay-2">
+        <div class="comp-header">
+          <span></span>
+          <span class="comp-col-head">Heurystics agents</span>
+          <span class="comp-col-head">Copilot / ChatGPT</span>
+        </div>
+        {comparisonRows.map((row) => (
+          <div class="comp-row">
+            <span class="comp-cap">{row.cap}</span>
+            <span class="comp-us">{row.us}</span>
+            <span class="comp-them">{row.them}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industry Data -->
+  <section class="section section-limestone">
+    <div class="container" style="max-width: 720px;">
+      <h2 class="fade-up">The window is closing.</h2>
+      <div class="industry-text fade-up delay-1">
+        <p>McKinsey (March 2026) projects $430–550 billion in annual value from automating repetitive workflows in commercial real estate. That value goes to the platforms that move first.</p>
+        <p style="margin-top: 20px;">The platforms that deliver autonomous operations to their customers first win the category. The platforms that wait become the infrastructure layer someone else builds on top of.</p>
+      </div>
+    </div>
+  </section>
+
+  <CTABlock />
+
+</BaseLayout>
+
+<style is:global>
+  .re-hero { padding: 100px 0 80px; }
+  .re-hero-h1 { max-width: 800px; color: #fff; font-size: 48px; }
+
+  .pain-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .pain-card { background: var(--navy); border-radius: 3px; padding: 28px 24px; display: flex; flex-direction: column; gap: 6px; }
+  .pain-stat { font-size: 24px; color: var(--ochre); }
+  .pain-desc { font-size: 14px; color: #fff; line-height: 1.5; }
+  .pain-line { font-size: 13px; color: var(--sandstone); }
+
+  .section-sub { max-width: 640px; margin-top: 12px; margin-bottom: 48px; }
+
+  .uc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; grid-auto-flow: dense; }
+  .uc-card[data-open] { grid-column: 1 / -1; }
+  .uc-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; cursor: pointer; }
+  .uc-num { font-size: 24px; color: var(--sandstone); min-width: 36px; }
+  .uc-title { font-size: 17px; }
+  .uc-short { font-size: 13px; color: var(--driftwood); }
+  .uc-toggle { margin-left: auto; background: none; border: none; color: var(--sandstone); cursor: pointer; transition: transform 0.2s; flex-shrink: 0; }
+  .uc-card[data-open] .uc-toggle { transform: rotate(180deg); }
+  .uc-expanded { display: none; padding: 0 24px 24px; border-top: 1px solid var(--limestone); padding-top: 16px; }
+  .uc-card[data-open] .uc-expanded { display: block; }
+  .uc-detail { margin-bottom: 16px; }
+  .uc-detail h5 { font-family: var(--font-body); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--ochre); margin-bottom: 4px; }
+  .uc-detail p { font-size: 14px; color: var(--driftwood); line-height: 1.65; }
+  .uc-tech { font-size: 11px; color: var(--sandstone); }
+
+  .comp-table { border: 1px solid var(--limestone); border-radius: 3px; overflow: hidden; margin-top: 32px; }
+  .comp-header, .comp-row { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; }
+  .comp-header { background: var(--navy); padding: 12px 20px; }
+  .comp-col-head { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.5px; }
+  .comp-row { padding: 12px 20px; border-bottom: 1px solid var(--limestone); font-size: 14px; }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-cap { font-weight: 600; color: var(--navy); }
+  .comp-us { color: var(--navy); }
+  .comp-them { color: var(--driftwood); }
+
+  .industry-text p { font-size: 16px; line-height: 1.75; color: var(--timber); }
+
+  @media (max-width: 1024px) {
+    .pain-grid { grid-template-columns: 1fr 1fr; }
+    .uc-grid { grid-template-columns: 1fr; }
+    .re-hero-h1 { font-size: 36px; }
+  }
+
+  @media (max-width: 768px) {
+    .pain-grid { grid-template-columns: 1fr; }
+    .comp-header, .comp-row { grid-template-columns: 1fr; gap: 4px; }
+    .comp-header { display: none; }
+    .comp-row { padding: 16px 20px; }
+    .comp-us::before { content: 'Heurystics: '; font-weight: 600; }
+    .comp-them::before { content: 'Copilot: '; font-weight: 600; color: var(--sandstone); }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-uc]').forEach((card) => {
+    const header = card.querySelector('.uc-header');
+    header?.addEventListener('click', () => {
+      const isOpen = card.hasAttribute('data-open');
+      // Close all
+      document.querySelectorAll('[data-uc][data-open]').forEach((c) => c.removeAttribute('data-open'));
+      // Open clicked (if it wasn't already open)
+      if (!isOpen) card.setAttribute('data-open', '');
+    });
+  });
+</script>
