@@ -6,15 +6,15 @@ import '../styles/slack.css';
 ---
 
 <BaseLayout
-  title="Heurystics — AI That Runs Real Estate Operations"
-  description="Heurystics sets up AI that handles operations for brokerages and title companies — document chasing, commission errors, missed leads, deal tracking. Results in weeks. $299/month."
+  title="Heurystics — AI That Runs Your Brokerage Operations"
+  description="Heurystics sets up AI that handles brokerage operations — document chasing, commission errors, missed leads, deal tracking. Your team focuses on closing deals. Results in weeks."
 >
 
   <!-- ===== HERO ===== -->
   <section class="section hero-section">
     <div class="container hero-grid">
       <div class="hero-text">
-        <p class="eyebrow fade-up">For brokerages and title companies</p>
+        <p class="eyebrow fade-up">For real estate brokerages</p>
         <h1 class="fade-up delay-1">
           Your team is spending 60% of their time on work that should <em class="hero-em">run itself.</em>
         </h1>
@@ -40,7 +40,7 @@ import '../styles/slack.css';
   <section class="section stat-section">
     <div class="container stat-center fade-up">
       <span class="stat-big">$250K</span>
-      <p class="stat-desc">leaked annually in commission and closing errors by the average mid-size real estate firm.</p>
+      <p class="stat-desc">leaked annually in commission errors by the average 100-agent brokerage.</p>
       <p class="stat-sub mono">2–5% of gross revenue. Caught by nobody. Until now.</p>
     </div>
   </section>
@@ -73,15 +73,19 @@ import '../styles/slack.css';
       </div>
 
       <div class="how-not fade-up">
-        <h4 class="how-not-heading">Why not just hire another person?</h4>
-        <div class="how-not-grid">
+        <h4 class="how-not-heading">How this is different from what you've tried</h4>
+        <div class="how-not-grid-3">
           <div class="how-not-item">
-            <span class="how-not-label mono">A new hire</span>
-            <p>Costs $50K–70K/year. Works 40 hours a week. Takes months to train. Handles one thing at a time. Calls in sick.</p>
+            <span class="how-not-label mono">Hiring another TC</span>
+            <p>$50K–70K/year. 40 hours a week. Months to train. One thing at a time. Calls in sick.</p>
+          </div>
+          <div class="how-not-item">
+            <span class="how-not-label mono">Adding AI features to your CRM</span>
+            <p>Lofty, Rechat, kvCORE add features you still have to use. They help you work. They don't do the work.</p>
           </div>
           <div class="how-not-item">
             <span class="how-not-label mono" style="color: var(--ochre)">Heurystics</span>
-            <p>Costs $299–399/month. Works 24/7/365. Fully operational in weeks. Handles 40+ concurrent deals. Never misses a deadline.</p>
+            <p>Takes over the workflow entirely. Works 24/7. Handles 40+ deals simultaneously. You see results, not another dashboard.</p>
           </div>
         </div>
       </div>
@@ -231,31 +235,37 @@ import '../styles/slack.css';
     </div>
   </section>
 
-  <!-- ===== PROOF STRIP ===== -->
+  <!-- ===== PROOF ===== -->
   <section class="section">
     <div class="container">
-      <p class="eyebrow fade-up">Proof</p>
-      <h2 class="fade-up delay-1">We've delivered these outcomes before. At scale.</h2>
-      <p class="lead section-sub fade-up delay-2">
-        Heurystics is new. Our founding team is not. Three projects where we turned operational complexity into measurable business results.
-      </p>
+      <p class="eyebrow fade-up">Already in real estate</p>
+      <h2 class="fade-up delay-1">50 real estate companies. 3,000+ workflows running autonomously.</h2>
 
-      <div class="proof-cards">
-        <a href="/work#case-1" class="proof-card fade-up">
-          <span class="proof-stat stat-number">$100M+</span>
-          <span class="proof-title">20% revenue lift per customer visit</span>
-          <span class="proof-desc">10-location regulated retail chain. Same pattern as real estate: multi-location ops, compliance, high-volume transactions. Customers spent 20% more. Wait times dropped 30%.</span>
-        </a>
-        <a href="/work#case-2" class="proof-card fade-up delay-1">
-          <span class="proof-stat stat-number">650</span>
-          <span class="proof-title">650 customers running autonomous operations</span>
-          <span class="proof-desc">Fully autonomous operations pipeline. 50 of these customers are real estate companies. 3,000+ workflows completed without anyone touching them.</span>
-        </a>
-        <a href="/work#case-3" class="proof-card fade-up delay-2">
-          <span class="proof-stat stat-number">1.83x</span>
-          <span class="proof-title">83% more revenue from the same ad budget</span>
-          <span class="proof-desc">$1.5B manufacturer. We found where money was being wasted and stopped it — same approach we take with operational costs in real estate.</span>
-        </a>
+      <div class="proof-single fade-up delay-2">
+        <div class="proof-single-stats">
+          <div class="proof-single-stat">
+            <span class="proof-stat stat-number">650</span>
+            <span class="proof-stat-label">customers on our autonomous operations system</span>
+          </div>
+          <div class="proof-single-stat">
+            <span class="proof-stat stat-number">50</span>
+            <span class="proof-stat-label">of them are real estate companies</span>
+          </div>
+          <div class="proof-single-stat">
+            <span class="proof-stat stat-number">3,000+</span>
+            <span class="proof-stat-label">workflows completed without human intervention</span>
+          </div>
+          <div class="proof-single-stat">
+            <span class="proof-stat stat-number">4-6 hrs</span>
+            <span class="proof-stat-label">saved per task that used to be manual</span>
+          </div>
+        </div>
+        <p class="proof-single-body">
+          Our founding team built an autonomous operations system now serving 650 customers — 50 of them real estate companies.
+          Research, analysis, coordination, execution, and delivery. No human in the loop for routine operations.
+          This is the same approach behind everything we build for brokerages.
+        </p>
+        <a href="/work" class="btn btn-outline" style="margin-top: 16px;">See all case studies &rarr;</a>
       </div>
     </div>
   </section>
@@ -298,9 +308,11 @@ import '../styles/slack.css';
   .how-not-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--sandstone); display: block; margin-bottom: 6px; }
   .how-not-item p { font-size: 14px; color: var(--driftwood); line-height: 1.65; }
 
+  .how-not-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+
   @media (max-width: 768px) {
     .how-steps-grid { grid-template-columns: 1fr; }
-    .how-not-grid { grid-template-columns: 1fr; }
+    .how-not-grid-3 { grid-template-columns: 1fr; }
   }
 
 
@@ -332,18 +344,19 @@ import '../styles/slack.css';
   .value-card h4 { color: #fff; font-size: 18px; margin-bottom: 8px; }
   .value-card p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.65; }
 
-  /* Proof cards */
-  .proof-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
-  .proof-card { display: flex; flex-direction: column; gap: 8px; padding: 32px 28px; background: var(--navy); border-radius: 3px; text-decoration: none; transition: transform 0.2s ease, border-color 0.2s ease; border: 1px solid transparent; }
-  .proof-card:hover { transform: translateY(-3px); border-color: var(--navy-light); }
-  .proof-stat { font-size: 36px; color: var(--ochre); }
-  .proof-title { font-family: var(--font-display); font-size: 17px; color: #fff; line-height: 1.3; }
-  .proof-desc { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  /* Proof single block */
+  .proof-single { margin-top: 40px; padding: 40px; background: var(--navy); border-radius: 3px; }
+  .proof-single-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .proof-single-stat { display: flex; flex-direction: column; gap: 4px; }
+  .proof-stat { font-size: 32px; color: var(--ochre); }
+  .proof-stat-label { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.4; }
+  .proof-single-body { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 640px; }
 
   @media (max-width: 1024px) {
     .hero-grid { grid-template-columns: 1fr; gap: 40px; }
     .outcome-cards { grid-template-columns: 1fr; }
-    .value-cards, .proof-cards { grid-template-columns: 1fr; }
+    .value-cards { grid-template-columns: 1fr; }
+    .proof-single-stats { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 768px) {
