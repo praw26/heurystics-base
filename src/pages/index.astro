@@ -6,8 +6,8 @@ import '../styles/slack.css';
 ---
 
 <BaseLayout
-  title="Heurystics — Real Estate Operations That Run Themselves"
-  description="We take over the workflows costing brokerages and title companies time and money. Missed deadlines, commission errors, lost leads, buried documents — gone in weeks, not quarters."
+  title="Heurystics — AI That Runs Real Estate Operations"
+  description="Heurystics sets up AI that handles operations for brokerages and title companies — document chasing, commission errors, missed leads, deal tracking. Results in weeks. $299/month."
 >
 
   <!-- ===== HERO ===== -->
@@ -21,8 +21,8 @@ import '../styles/slack.css';
         <p class="lead hero-body fade-up delay-2">
           Document chasing. Commission errors. Missed leads after 5 PM.
           Deals stalling because nobody can see the pipeline.
-          Whether you're running a brokerage or a title operation,
-          the problem is the same — and we take it over.
+          Heurystics sets up AI that handles these operations for you —
+          around the clock, in the tools your team already uses.
         </p>
         <div class="hero-buttons fade-up delay-3">
           <a href="#what-changes" class="btn btn-navy">See what changes &darr;</a>
@@ -31,7 +31,7 @@ import '../styles/slack.css';
       </div>
       <div class="hero-visual fade-up delay-4">
         <SlackChat client:visible />
-        <p class="slack-caption">This is what your operations look like when they run themselves. Works with whatever tools your team already uses.</p>
+        <p class="slack-caption">What your team sees: AI coordinating a live deal across deadlines, documents, and people — without anyone asking it to.</p>
       </div>
     </div>
   </section>
@@ -45,13 +45,56 @@ import '../styles/slack.css';
     </div>
   </section>
 
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="section how-section" id="how-it-works">
+    <div class="container how-container">
+      <p class="eyebrow fade-up">How it actually works</p>
+      <h2 class="fade-up delay-1">We set up AI that runs your operations. 24/7.</h2>
+      <p class="lead how-lead fade-up delay-2">
+        Not a chatbot. Not a dashboard you have to check. Not another tool your team has to learn.
+      </p>
+
+      <div class="how-steps-grid fade-up delay-3">
+        <div class="how-step-card">
+          <span class="how-step-num mono">01</span>
+          <h4>We study how your firm actually works</h4>
+          <p>Your deal flow, your document processes, your commission structures, your pain points. We map the workflows that are eating your time.</p>
+        </div>
+        <div class="how-step-card">
+          <span class="how-step-num mono">02</span>
+          <h4>We build AI that handles it</h4>
+          <p>Purpose-built for your operation. It chases documents, catches errors, answers inquiries, tracks deals — autonomously, around the clock.</p>
+        </div>
+        <div class="how-step-card">
+          <span class="how-step-num mono">03</span>
+          <h4>Your team sees the results</h4>
+          <p>In Slack, email, your CRM — whatever you already use. Nothing changes for them except the work gets done. No new software to learn.</p>
+        </div>
+      </div>
+
+      <div class="how-not fade-up">
+        <h4 class="how-not-heading">Why not just hire another person?</h4>
+        <div class="how-not-grid">
+          <div class="how-not-item">
+            <span class="how-not-label mono">A new hire</span>
+            <p>Costs $50K–70K/year. Works 40 hours a week. Takes months to train. Handles one thing at a time. Calls in sick.</p>
+          </div>
+          <div class="how-not-item">
+            <span class="how-not-label mono" style="color: var(--ochre)">Heurystics</span>
+            <p>Costs $299–399/month. Works 24/7/365. Fully operational in weeks. Handles 40+ concurrent deals. Never misses a deadline.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== FOUR PACKAGED OUTCOMES ===== -->
   <section class="section" id="what-changes">
     <div class="container">
       <p class="eyebrow fade-up">What changes</p>
       <h2 class="fade-up delay-1">Four things that stop being your problem.</h2>
       <p class="lead section-sub fade-up delay-2">
-        We don't sell software you have to figure out. We take over the workflow,
+        You don't buy software and figure it out yourself. We take over the workflow,
         you see the results, and you only keep paying if the numbers prove it's working.
       </p>
       <div class="founding-banner fade-up delay-3">
@@ -240,6 +283,29 @@ import '../styles/slack.css';
   .stat-sub { font-size: 12px; color: var(--sandstone); margin-top: 8px; }
 
   .section-sub { max-width: 640px; margin-top: 12px; margin-bottom: 24px; }
+
+  /* How it works section */
+  .how-section { background: var(--parchment); }
+  .how-container { max-width: 900px; }
+  .how-lead { max-width: 540px; margin-bottom: 48px; }
+
+  .how-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+  .how-step-card { padding: 28px 24px; border-radius: 3px; border: 1px solid var(--limestone); background: var(--nordic-light); }
+  .how-step-num { font-size: 20px; color: var(--ochre); display: block; margin-bottom: 12px; }
+  .how-step-card h4 { font-size: 17px; margin-bottom: 8px; }
+  .how-step-card p { font-size: 14px; color: var(--driftwood); line-height: 1.65; }
+
+  .how-not { padding: 32px; border-radius: 3px; border: 1px solid var(--limestone); background: var(--nordic-light); }
+  .how-not-heading { font-size: 18px; margin-bottom: 20px; }
+  .how-not-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .how-not-item { }
+  .how-not-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--sandstone); display: block; margin-bottom: 6px; }
+  .how-not-item p { font-size: 14px; color: var(--driftwood); line-height: 1.65; }
+
+  @media (max-width: 768px) {
+    .how-steps-grid { grid-template-columns: 1fr; }
+    .how-not-grid { grid-template-columns: 1fr; }
+  }
 
   .founding-banner { display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: var(--ochre-soft); border-radius: 3px; border-left: 3px solid var(--ochre); margin-bottom: 48px; max-width: 640px; }
   .founding-label { font-size: 11px; color: var(--ochre); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
