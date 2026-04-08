@@ -12,19 +12,19 @@ const useCases = [
   {
     num: '02', title: 'Commission reconciliation', short: 'Every split verified', time: '3-4 weeks',
     what: 'Reads executed contracts and closing statements. Looks up each agent\u2019s commission plan including all overrides, caps, team shares. Calculates exact splits. Cross-checks against title company disbursements. Flags discrepancies BEFORE money moves. Generates accounting entries for QuickBooks/Xero. Monthly P&L by agent/team/office.',
-    pain: 'Every deal has a unique commission split. With bonuses, caps, team splits, and overrides, a 100-agent brokerage has hundreds of unique structures. Commission errors average 2-5% of gross revenue \u2014 for a $5M brokerage, $100K-250K/year leaked. 56% of firms cite financial/operational challenges as top concern.',
+    pain: 'Every deal has a unique commission split. With bonuses, caps, team splits, and overrides, a 100-agent brokerage has hundreds of unique structures. Commission errors average 2-5% of gross revenue. For a $5M brokerage, $100K-250K/year leaked. 56% of firms cite financial/operational challenges as top concern.',
     tech: 'QuickBooks/Xero API \u00b7 CRM connector \u00b7 email parser \u00b7 title company portal',
   },
   {
     num: '03', title: 'Listing launch automation', short: 'Signed to launched in minutes', time: '2 weeks',
     what: 'Triggered when listing agreement is signed. Drafts MLS description from property details + comps. Schedules photographer from preferred vendor list. Generates social posts (IG/FB/LinkedIn). Creates segmented email campaigns. Builds property landing page. Sets price reduction reviews at 14/21/30 days.',
-    pain: 'When agent signs a new listing, 15-20 tasks must happen in sequence. A busy agent doing 3-4 listings/month loses 8-10 hours of admin per listing. Delayed launches mean fewer showing days \u2014 NAR data shows first 2 weeks are critical.',
+    pain: 'When agent signs a new listing, 15-20 tasks must happen in sequence. A busy agent doing 3-4 listings/month loses 8-10 hours of admin per listing. Delayed launches mean fewer showing days. NAR data shows first 2 weeks are critical.',
     tech: 'MLS API \u00b7 Canva/design templates \u00b7 Mailchimp/ActiveCampaign \u00b7 social APIs \u00b7 CRM trigger',
   },
   {
     num: '04', title: 'Compliance & risk monitoring', short: '$50K-500K violation avoided', time: '3-4 weeks',
     what: 'Continuous monitoring of fair housing laws, disclosure requirements, advertising rules, license renewals, E&O insurance. Scans all agent-generated content for compliance. Tracks regulatory changes. Generates audit-ready reports.',
-    pain: 'One fair housing violation means $50K-500K in fines and legal costs. Most brokerages rely on periodic manual audits \u2014 they find problems AFTER they\u2019ve become expensive. Rising regulatory complexity from NAR settlement changes.',
+    pain: 'One fair housing violation means $50K-500K in fines and legal costs. Most brokerages rely on periodic manual audits. They find problems AFTER they\u2019ve become expensive. Rising regulatory complexity from NAR settlement changes.',
     tech: 'Regulatory database connector \u00b7 content scanner \u00b7 alert system \u00b7 reporting engine',
   },
   {
@@ -36,13 +36,13 @@ const useCases = [
   {
     num: '06', title: 'Property management operations', short: 'Maintenance to rent collection', time: '4-6 weeks',
     what: 'Automates maintenance request triage, lease renewal workflows, rent collection reminders, vendor coordination, and tenant communication across multi-unit portfolios.',
-    pain: 'Property management is coordination-heavy \u2014 maintenance requests, lease expirations, rent collection, vendor scheduling across dozens or hundreds of units. Each task is small but the volume creates operational drag.',
+    pain: 'Property management is coordination-heavy. Maintenance requests, lease expirations, rent collection, vendor scheduling across dozens or hundreds of units. Each task is small but the volume creates operational drag.',
     tech: 'Property management system API \u00b7 vendor database \u00b7 tenant communication \u00b7 payment tracking',
   },
   {
     num: '07', title: 'Comparative market analysis', short: '12-20 hrs/week saved for agents', time: '2 weeks',
     what: 'Generates CMAs from MLS data, recent sales, market trends, and property characteristics. Produces presentation-ready reports. Updates automatically as new comps become available.',
-    pain: 'A busy listing agent spends 12-20 hours/week researching comps and building CMAs manually. The data is available \u2014 the assembly is what takes time.',
+    pain: 'A busy listing agent spends 12-20 hours/week researching comps and building CMAs manually. The data is available. The assembly is what takes time.',
     tech: 'MLS API \u00b7 comparable sales database \u00b7 report generation \u00b7 market data feeds',
   },
   {
@@ -81,8 +81,8 @@ const painStats = [
       <p class="eyebrow fade-up" style="color: var(--ochre);">For platform companies</p>
       <h1 class="fade-up delay-1 re-hero-h1">Your customers' brokerages are bleeding time and money. You can fix that.</h1>
       <p class="lead fade-up delay-2" style="color: rgba(255,255,255,0.45); max-width: 700px; margin-top: 16px;">
-        If you build real estate software — CRMs, transaction platforms, back-office tools —
-        these are the 8 operational problems your customers need solved.
+        If you build real estate software. CRMs, transaction platforms, back-office tools.
+        These are the 8 operational problems your customers need solved.
         We build them into your platform so you ship the capability your competitors can't.
       </p>
     </div>
@@ -221,7 +221,7 @@ const painStats = [
   .comp-us { color: var(--navy); }
   .comp-them { color: var(--driftwood); }
 
-  .industry-text p { font-size: 16px; line-height: 1.75; color: var(--timber); }
+  .industry-text p { font-size: 16px; line-height: 1.75; color: rgba(255, 255, 255, 0.75); }
 
   @media (max-width: 1024px) {
     .pain-grid { grid-template-columns: 1fr 1fr; }
