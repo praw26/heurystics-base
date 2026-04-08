@@ -190,7 +190,7 @@ img {
 
 /* ===== SECTIONS ===== */
 .section {
-  padding: 100px 0;
+  padding: 72px 0;
 }
 
 .section-navy {
@@ -217,15 +217,19 @@ img {
 }
 
 /* ===== SCROLL ANIMATIONS ===== */
+/* Fade-up: purely cosmetic, never hides content */
 .fade-up {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.fade-up.animate-in {
+  animation: fadeUpIn 0.5s ease forwards;
+}
+
+@keyframes fadeUpIn {
+  from { opacity: 0.5; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-up.delay-1 { transition-delay: 0.1s; }
@@ -253,7 +257,7 @@ img {
 /* strips Astro scoped/is:global styles from page components      */
 
 /* Homepage: hero */
-.hero-section { padding-top: 72px; padding-bottom: 72px; overflow: hidden; }
+.hero-section { padding-top: 56px; padding-bottom: 48px; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
 .hero-em { color: var(--ochre); font-style: italic; }
 .hero-body { margin-top: 20px; }
