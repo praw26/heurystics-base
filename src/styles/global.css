@@ -322,8 +322,10 @@ img {
 /* Homepage: use case cards */
 .use-case-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
 .use-case-card { display: flex; flex-direction: column; overflow: hidden; }
-.uc-top { overflow: hidden; border-radius: 3px 3px 0 0; }
-.uc-img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.uc-top { padding: 32px 20px; display: flex; align-items: center; justify-content: center; border-radius: 3px 3px 0 0; }
+.uc-stat-group { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.uc-stat-number { font-family: var(--font-mono); font-size: 36px; font-weight: 500; color: #fff; line-height: 1; }
+.uc-stat-desc { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.45); }
 .uc-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .uc-body h4 { font-size: 16px; line-height: 1.3; }
 .uc-body p { font-size: 13px; color: var(--driftwood); line-height: 1.6; flex: 1; }
