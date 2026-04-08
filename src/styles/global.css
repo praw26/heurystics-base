@@ -317,8 +317,8 @@ img {
 /* Homepage: use case cards */
 .use-case-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
 .use-case-card { display: flex; flex-direction: column; overflow: hidden; }
-.uc-top { padding: 24px; display: flex; align-items: center; justify-content: center; }
-.uc-emoji { font-size: 32px; filter: grayscale(1) brightness(2); }
+.uc-top { overflow: hidden; border-radius: 3px 3px 0 0; }
+.uc-img { width: 100%; height: 180px; object-fit: cover; display: block; }
 .uc-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .uc-body h4 { font-size: 16px; line-height: 1.3; }
 .uc-body p { font-size: 13px; color: var(--driftwood); line-height: 1.6; flex: 1; }
