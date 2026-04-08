@@ -285,7 +285,9 @@ img {
   .sbs-logo { height: 16px; }
 }
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.hero-who { font-family: var(--font-mono); font-size: 12px; color: var(--driftwood); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
 .hero-em { color: var(--ochre); font-style: italic; }
+.hero-friction { font-family: var(--font-mono); font-size: 12px; color: var(--sandstone); margin-top: 12px; }
 .hero-body { margin-top: 20px; }
 .hero-buttons { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
 .slack-caption { font-size: 13px; color: var(--driftwood); text-align: center; margin-top: 12px; }
