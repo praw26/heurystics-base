@@ -298,9 +298,11 @@ img {
 /* Homepage: proof grid */
 .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
 .proof-card-block { border-radius: 3px; border: 1px solid var(--limestone); overflow: hidden; }
-.proof-card-header { padding: 24px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
-.proof-card-label { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
-.proof-svg { width: 80px; height: 60px; }
+.proof-card-img-wrap { position: relative; overflow: hidden; height: 200px; }
+.proof-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.proof-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(15,29,51,0.9) 0%, rgba(15,29,51,0.4) 60%, transparent 100%); }
+.proof-card-tag { font-size: 10px; color: var(--ochre); text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 4px; }
+.proof-card-headline { font-family: var(--font-display); font-size: 20px; color: #fff; display: block; }
 .proof-card-body { padding: 24px; }
 .proof-card-body p { font-size: 14px; color: var(--driftwood); line-height: 1.65; margin-bottom: 16px; }
 .proof-card-stats { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--timber); }
