@@ -260,7 +260,19 @@ img {
 .hero-buttons { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
 .slack-caption { font-size: 13px; color: var(--driftwood); text-align: center; margin-top: 12px; }
 
-/* Homepage: proof */
+/* Homepage: proof grid */
+.proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+.proof-card-block { border-radius: 3px; border: 1px solid var(--limestone); overflow: hidden; }
+.proof-card-header { padding: 24px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.proof-card-label { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+.proof-svg { width: 80px; height: 60px; }
+.proof-card-body { padding: 24px; }
+.proof-card-body p { font-size: 14px; color: var(--driftwood); line-height: 1.65; margin-bottom: 16px; }
+.proof-card-stats { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--timber); }
+.proof-card-stats strong { color: var(--ochre); font-family: var(--font-mono); font-weight: 500; }
+.proof-note { text-align: center; margin-top: 24px; }
+
+/* Keep old proof styles for /work page */
 .proof-single { margin-top: 40px; padding: 40px; background: var(--navy); border-radius: 3px; }
 .proof-single-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .proof-single-stat { display: flex; flex-direction: column; gap: 4px; }
@@ -325,6 +337,7 @@ img {
   .outcome-cards { grid-template-columns: 1fr; }
   .value-cards { grid-template-columns: 1fr; }
   .proof-single-stats { grid-template-columns: 1fr; }
+  .proof-grid { grid-template-columns: 1fr; }
   .how-not-grid-3 { grid-template-columns: 1fr; }
 }
 
