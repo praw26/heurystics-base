@@ -269,6 +269,21 @@ img {
 
 /* Homepage: hero */
 .hero-section { padding-top: 56px; padding-bottom: 48px; overflow: hidden; }
+
+/* Logo strip */
+.logo-strip { padding: 24px 0; border-top: 1px solid var(--limestone); border-bottom: 1px solid var(--limestone); }
+.logo-strip-inner { display: flex; align-items: center; gap: 32px; }
+.logo-strip-label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sandstone); white-space: nowrap; flex-shrink: 0; }
+.logo-strip-logos { display: flex; align-items: center; gap: 40px; flex: 1; justify-content: center; }
+.logo-item { height: 24px; color: var(--sandstone); opacity: 0.6; transition: opacity 0.2s; }
+.logo-item:hover { opacity: 1; }
+.sbs-logo { height: 20px; }
+
+@media (max-width: 768px) {
+  .logo-strip-inner { flex-direction: column; gap: 16px; }
+  .logo-strip-logos { flex-wrap: wrap; gap: 24px; justify-content: center; }
+  .sbs-logo { height: 16px; }
+}
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
 .hero-em { color: var(--ochre); font-style: italic; }
 .hero-body { margin-top: 20px; }
