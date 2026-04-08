@@ -208,7 +208,18 @@ img {
 }
 
 .section-limestone {
-  background: var(--limestone);
+  background: var(--navy);
+  color: #fff;
+}
+
+.section-limestone h2,
+.section-limestone .cta-heading {
+  color: #fff;
+}
+
+.section-limestone .lead,
+.section-limestone .cta-sub {
+  color: rgba(255,255,255,0.6);
 }
 
 .section-navy-dark {
@@ -333,9 +344,9 @@ img {
 .cta-sub { margin-bottom: 32px; }
 .cta-stats { display: flex; align-items: center; gap: 24px; }
 .cta-stat { display: flex; flex-direction: column; gap: 4px; }
-.cta-stat-value { font-size: 16px; color: var(--navy); }
-.cta-stat-label { font-family: var(--font-mono); font-size: 11px; color: var(--sandstone); }
-.cta-divider { width: 1px; height: 32px; background: var(--sandstone); }
+.cta-stat-value { font-size: 16px; color: #fff; }
+.cta-stat-label { font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); }
+.cta-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.15); }
 .cta-form { display: flex; flex-direction: column; gap: 16px; padding: 32px; background: var(--parchment); border: 1px solid var(--sandstone); border-radius: 3px; }
 .form-group { display: flex; flex-direction: column; gap: 4px; }
 .form-label { font-size: 13px; font-weight: 600; color: var(--navy); }
