@@ -280,7 +280,7 @@ img {
 .sbs-logo { height: 20px; }
 
 /* Team photos */
-.team-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; object-position: center top; }
+.team-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: center top; }
 
 @media (max-width: 768px) {
   .logo-strip-inner { flex-direction: column; gap: 16px; }

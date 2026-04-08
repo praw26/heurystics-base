@@ -13,6 +13,10 @@ import CTABlock from '../components/CTABlock.astro';
     <div class="container" style="max-width: 800px;">
       <p class="eyebrow fade-up">Our work</p>
       <h1 class="fade-up delay-1">We build AI that runs operations.</h1>
+      <p class="lead fade-up delay-2" style="margin-top: 16px;">
+        Production AI deployed across real estate, retail, and procurement.
+        Today, we bring that depth to real estate exclusively.
+      </p>
     </div>
   </section>
 
@@ -107,8 +111,11 @@ import CTABlock from '../components/CTABlock.astro';
       <div class="testimonial fade-up">
         <blockquote class="testimonial-quote">"We stopped losing deals to missed deadlines in the first month. The commission reconciliation alone paid for the entire system before quarter end."</blockquote>
         <div class="testimonial-author">
-          <span class="testimonial-name">David Petterson</span>
-          <span class="testimonial-role">Managing Broker &middot; 100+ agent brokerage, California</span>
+          <img src="https://pub-a836d08629454caf9059acebd385a714.r2.dev/heurystics/david.webp" alt="David Petterson" class="testimonial-photo" width="48" height="48" />
+          <div class="testimonial-author-info">
+            <span class="testimonial-name">David Petterson</span>
+            <span class="testimonial-role">Managing Broker &middot; 100+ agent brokerage, California</span>
+          </div>
         </div>
       </div>
     </div>
@@ -182,8 +189,11 @@ import CTABlock from '../components/CTABlock.astro';
       <div class="testimonial fade-up">
         <blockquote class="testimonial-quote">"They built our entire operations platform and then made it intelligent. New stores used to take weeks to onboard. Now it takes days."</blockquote>
         <div class="testimonial-author">
-          <span class="testimonial-name">John Oram</span>
-          <span class="testimonial-role">CEO &middot; Multi-location pharmacy chain, California</span>
+          <img src="https://pub-a836d08629454caf9059acebd385a714.r2.dev/heurystics/john.webp" alt="John Oram" class="testimonial-photo" width="48" height="48" />
+          <div class="testimonial-author-info">
+            <span class="testimonial-name">John Oram</span>
+            <span class="testimonial-role">CEO &middot; Multi-location pharmacy chain, California</span>
+          </div>
         </div>
       </div>
     </div>
@@ -261,10 +271,10 @@ import CTABlock from '../components/CTABlock.astro';
   <!-- Bridge to visitor -->
   <section class="section section-navy">
     <div class="container" style="max-width: 640px; text-align: center;">
-      <h2 class="fade-up" style="font-size: 28px;">This is what we build for real estate operations now.</h2>
+      <h2 class="fade-up" style="font-size: 28px;">These are the systems we've built. Now we do this for real estate.</h2>
       <p class="lead fade-up delay-1" style="color: rgba(255,255,255,0.5); margin-top: 12px;">
-        Same approach. Same team. We map your workflows, build AI that handles them,
-        and stay until the results prove it's working. Your operation is next.
+        Same rigor. Same team. The difference is focus. Every workflow we automated
+        across industries sharpened how we approach yours.
       </p>
       <a href="#book" class="btn btn-primary fade-up delay-2" style="margin-top: 24px;">Book an assessment &rarr;</a>
     </div>
@@ -312,7 +322,9 @@ import CTABlock from '../components/CTABlock.astro';
 
   .testimonial { margin-top: 40px; padding: 32px; border-left: 3px solid var(--ochre); background: var(--parchment); border-radius: 0 3px 3px 0; }
   .testimonial-quote { font-family: var(--font-display); font-size: 20px; line-height: 1.5; color: var(--navy); margin: 0; font-style: italic; }
-  .testimonial-author { margin-top: 16px; display: flex; flex-direction: column; gap: 2px; }
+  .testimonial-author { margin-top: 16px; display: flex; flex-direction: row; align-items: center; gap: 12px; }
+  .testimonial-photo { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .testimonial-author-info { display: flex; flex-direction: column; gap: 2px; }
   .testimonial-name { font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--navy); }
   .testimonial-role { font-family: var(--font-mono); font-size: 11px; color: var(--sandstone); }
 

@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy — Heurystics"
+  description="How Heurystics collects, uses, and protects your personal data. GDPR-compliant privacy practices."
+>
+
+  <section class="section">
+    <div class="container privacy-content">
+      <h1>Privacy Policy</h1>
+      <p class="privacy-updated">Last updated: April 2026</p>
+
+      <h3>Who we are</h3>
+      <p>Heurystics is an AI consultancy based in Stockholm, Sweden. When you interact with our website at heurystics.com, we act as the data controller for any personal data collected.</p>
+      <p>Contact: <a href="mailto:hello@heurystics.com">hello@heurystics.com</a></p>
+
+      <h3>What data we collect</h3>
+      <h4>Contact form submissions</h4>
+      <p>When you submit our assessment booking form, we collect:</p>
+      <ul>
+        <li>Your name</li>
+        <li>Work email address</li>
+        <li>Company name</li>
+        <li>Your role</li>
+        <li>Optional: description of your operational challenge</li>
+      </ul>
+      <p>This data is used solely to respond to your inquiry and schedule a consultation. We do not sell or share this data with third parties.</p>
+
+      <h4>Analytics data</h4>
+      <p>We use Google Analytics (via Google Tag Manager) to understand how visitors use our website. This collects:</p>
+      <ul>
+        <li>Pages visited and time spent</li>
+        <li>Referral source</li>
+        <li>Device type and browser</li>
+        <li>Approximate geographic location (country/city level)</li>
+      </ul>
+      <p>Google Analytics uses cookies to distinguish unique visitors. No personally identifiable information is collected through analytics.</p>
+
+      <h3>Cookies</h3>
+      <p>Our website uses the following cookies:</p>
+      <ul>
+        <li><strong>_ga, _ga_*</strong> — Google Analytics tracking cookies. Used to distinguish visitors and track site usage. Expire after 2 years.</li>
+        <li><strong>_gid</strong> — Google Analytics session cookie. Expires after 24 hours.</li>
+      </ul>
+      <p>You can disable cookies through your browser settings. The website will continue to function without them.</p>
+
+      <h3>How we use your data</h3>
+      <ul>
+        <li>To respond to your contact form submission</li>
+        <li>To schedule and conduct consultations</li>
+        <li>To understand website usage patterns and improve our site</li>
+      </ul>
+
+      <h3>Legal basis for processing</h3>
+      <p>Under GDPR, we process your data based on:</p>
+      <ul>
+        <li><strong>Consent</strong> — when you submit our contact form</li>
+        <li><strong>Legitimate interest</strong> — for website analytics to improve our services</li>
+      </ul>
+
+      <h3>Data retention</h3>
+      <p>Contact form submissions are retained for as long as necessary to fulfill your inquiry and any resulting business relationship. Analytics data is retained according to Google Analytics default settings (26 months).</p>
+
+      <h3>Your rights</h3>
+      <p>Under GDPR, you have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> — request a copy of your personal data</li>
+        <li><strong>Rectification</strong> — correct inaccurate data</li>
+        <li><strong>Erasure</strong> — request deletion of your data</li>
+        <li><strong>Portability</strong> — receive your data in a machine-readable format</li>
+        <li><strong>Objection</strong> — object to processing based on legitimate interest</li>
+        <li><strong>Withdraw consent</strong> — at any time, without affecting prior processing</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at <a href="mailto:hello@heurystics.com">hello@heurystics.com</a>. We will respond within 30 days.</p>
+
+      <h3>Data security</h3>
+      <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+
+      <h3>Third-party services</h3>
+      <ul>
+        <li><strong>Google Analytics / Google Tag Manager</strong> — website analytics (Google LLC, USA). Data processing governed by Google's privacy policy.</li>
+        <li><strong>Vercel</strong> — website hosting (Vercel Inc., USA). Processes server logs including IP addresses.</li>
+      </ul>
+
+      <h3>Changes to this policy</h3>
+      <p>We may update this policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style is:global>
+  .privacy-content {
+    max-width: 720px;
+  }
+
+  .privacy-content h1 {
+    margin-bottom: 8px;
+  }
+
+  .privacy-updated {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--sandstone);
+    margin-bottom: 40px;
+  }
+
+  .privacy-content h3 {
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  .privacy-content h4 {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-size: 16px;
+  }
+
+  .privacy-content p {
+    font-size: 15px;
+    color: var(--driftwood);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+
+  .privacy-content ul {
+    padding-left: 24px;
+    margin-bottom: 16px;
+  }
+
+  .privacy-content li {
+    font-size: 14px;
+    color: var(--driftwood);
+    line-height: 1.7;
+    margin-bottom: 4px;
+  }
+
+  .privacy-content a {
+    color: var(--ochre);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>
