@@ -1,0 +1,119 @@
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contact-modal">
+  <div class="modal-content">
+    <button class="modal-close" id="modal-close" aria-label="Close">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+
+    <h3 class="modal-heading">Book your free assessment</h3>
+    <p class="modal-sub">30 minutes. We'll identify where your biggest operational wins are — even if you never work with us.</p>
+
+    <form class="modal-form" id="modal-assessment-form">
+      <div class="form-group">
+        <label for="modal-name" class="form-label">Your name</label>
+        <input type="text" id="modal-name" name="name" required class="form-input" placeholder="Jane Smith" />
+      </div>
+      <div class="form-group">
+        <label for="modal-email" class="form-label">Work email</label>
+        <input type="email" id="modal-email" name="email" required class="form-input" placeholder="jane@yourbrokerage.com" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="modal-company" class="form-label">Company</label>
+          <input type="text" id="modal-company" name="company" required class="form-input" placeholder="Acme Realty" />
+        </div>
+        <div class="form-group">
+          <label for="modal-role" class="form-label">Your role</label>
+          <input type="text" id="modal-role" name="role" class="form-input" placeholder="Managing Broker" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="modal-message" class="form-label">Biggest operational headache? <span class="form-optional">(optional)</span></label>
+        <textarea id="modal-message" name="message" rows="2" class="form-input form-textarea" placeholder="e.g. Tracking 30+ deals in spreadsheets..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary form-submit">Send &rarr;</button>
+      <p class="form-note">We'll respond within 24 hours.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Open/close modal
+  function openModal() {
+    document.getElementById('contact-modal')?.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('contact-modal')?.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close button
+  document.getElementById('modal-close')?.addEventListener('click', closeModal);
+
+  // Click overlay to close
+  document.getElementById('contact-modal')?.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+
+  // ESC to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // All "book" links open modal
+  document.querySelectorAll('a[href="#book"], .open-modal').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  // Form submission
+  const modalForm = document.getElementById('modal-assessment-form');
+  modalForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = modalForm.querySelector('.form-submit') as HTMLButtonElement;
+    const originalText = btn.innerHTML;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const formData = new FormData(modalForm);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error('Server error');
+
+      btn.textContent = 'Sent! We\'ll be in touch.';
+      btn.style.background = '#4A7A62';
+      modalForm.reset();
+
+      setTimeout(() => {
+        closeModal();
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 2500);
+    } catch (err) {
+      btn.textContent = 'Something went wrong. Try again.';
+      btn.style.background = '#c0392b';
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }
+  });
+
+  // Expose globally for nav button
+  (window as any).openContactModal = openModal;
+</script>
