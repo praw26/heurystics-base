@@ -11,12 +11,8 @@ import CTABlock from '../components/CTABlock.astro';
   <!-- Hero -->
   <section class="section">
     <div class="container" style="max-width: 800px;">
-      <p class="eyebrow fade-up">Our founding team's work</p>
-      <h1 class="fade-up delay-1">Three systems built end-to-end. All running in production.</h1>
-      <p class="lead fade-up delay-2" style="margin-top: 16px;">
-        Before Heurystics, our team built AI operations for businesses drowning in manual work.
-        These are the systems that taught us what works — and what we now bring to real estate.
-      </p>
+      <p class="eyebrow fade-up">Our work</p>
+      <h1 class="fade-up delay-1">We build AI that runs operations. Here's the proof.</h1>
     </div>
   </section>
 
@@ -107,6 +103,14 @@ import CTABlock from '../components/CTABlock.astro';
         </div>
         <p class="case-note">First operations live in 2 weeks. Full system deployed in 6 weeks. All data stays on client infrastructure.</p>
       </div>
+
+      <div class="testimonial fade-up">
+        <blockquote class="testimonial-quote">"We stopped losing deals to missed deadlines in the first month. The commission reconciliation alone paid for the entire system before quarter end."</blockquote>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Managing Broker</span>
+          <span class="testimonial-role">100+ agent brokerage, California</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -173,6 +177,14 @@ import CTABlock from '../components/CTABlock.astro';
           <div class="ba-row"><span class="ba-label">New store onboarding</span><span class="ba-before">Weeks</span><span class="ba-after">Days</span></div>
         </div>
         <p class="case-note">Core platform live in 4 weeks. All operations deployed over 12 weeks. New locations now onboard in days.</p>
+      </div>
+
+      <div class="testimonial fade-up">
+        <blockquote class="testimonial-quote">"They built our entire operations platform and then made it intelligent. New stores used to take weeks to onboard — now it takes days."</blockquote>
+        <div class="testimonial-author">
+          <span class="testimonial-name">Operations Director</span>
+          <span class="testimonial-role">Multi-location pharmacy chain, California</span>
+        </div>
       </div>
     </div>
   </section>
@@ -297,6 +309,12 @@ import CTABlock from '../components/CTABlock.astro';
   .ba-after { color: var(--navy); font-weight: 500; }
 
   .case-note { font-family: var(--font-mono); font-size: 12px; color: var(--sandstone); }
+
+  .testimonial { margin-top: 40px; padding: 32px; border-left: 3px solid var(--ochre); background: var(--parchment); border-radius: 0 3px 3px 0; }
+  .testimonial-quote { font-family: var(--font-display); font-size: 20px; line-height: 1.5; color: var(--navy); margin: 0; font-style: italic; }
+  .testimonial-author { margin-top: 16px; display: flex; flex-direction: column; gap: 2px; }
+  .testimonial-name { font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--navy); }
+  .testimonial-role { font-family: var(--font-mono); font-size: 11px; color: var(--sandstone); }
 
   @media (max-width: 1024px) {
     .case-pain-grid { grid-template-columns: 1fr 1fr; }
