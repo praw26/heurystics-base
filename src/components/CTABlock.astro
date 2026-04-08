@@ -67,16 +67,13 @@
     const data = Object.fromEntries(formData);
 
     try {
-      // TODO: Replace with Resend API endpoint (hello@heurystics.com)
-      // For now, log to console and show success
-      console.log('Form submission:', data);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-      // When Resend is connected, uncomment:
-      // const res = await fetch('/api/contact', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // });
+      if (!res.ok) throw new Error('Server error');
 
       btn.textContent = 'Sent! We\'ll be in touch.';
       btn.style.background = '#4A7A62';
