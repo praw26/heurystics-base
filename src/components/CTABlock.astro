@@ -1,89 +1,100 @@
 <section class="section section-limestone" id="book">
   <div class="container cta-block">
-    <h2 class="cta-heading">One call. A clear picture of what stops being your problem.</h2>
-    <p class="lead cta-sub">
-      30 minutes. We'll show you exactly which operational problems disappear first,
-      how fast you see the difference, and what the revenue impact looks like — even if you never work with us.
-    </p>
+    <div class="cta-content">
+      <h2 class="cta-heading">One call. A clear picture of what stops being your problem.</h2>
+      <p class="lead cta-sub">
+        30 minutes. We'll show you exactly which operational problems disappear first,
+        how fast you see the difference, and what the revenue impact looks like — even if you never work with us.
+      </p>
 
-    <div class="cta-stats">
-      <div class="cta-stat">
-        <span class="stat-number cta-stat-value">30 min</span>
-        <span class="cta-stat-label">Assessment call</span>
-      </div>
-      <div class="cta-divider"></div>
-      <div class="cta-stat">
-        <span class="stat-number cta-stat-value">2-4 weeks</span>
-        <span class="cta-stat-label">First results visible</span>
-      </div>
-      <div class="cta-divider"></div>
-      <div class="cta-stat">
-        <span class="stat-number cta-stat-value">0</span>
-        <span class="cta-stat-label">Data leaving your servers</span>
+      <div class="cta-stats">
+        <div class="cta-stat">
+          <span class="stat-number cta-stat-value">30 min</span>
+          <span class="cta-stat-label">Assessment call</span>
+        </div>
+        <div class="cta-divider"></div>
+        <div class="cta-stat">
+          <span class="stat-number cta-stat-value">2-4 weeks</span>
+          <span class="cta-stat-label">First results visible</span>
+        </div>
+        <div class="cta-divider"></div>
+        <div class="cta-stat">
+          <span class="stat-number cta-stat-value">0</span>
+          <span class="cta-stat-label">Data leaving your servers</span>
+        </div>
       </div>
     </div>
 
-    <a href="#book" class="btn btn-primary">Book your free assessment &rarr;</a>
+    <form class="cta-form" id="assessment-form" action="/api/contact" method="POST">
+      <div class="form-group">
+        <label for="name" class="form-label">Your name</label>
+        <input type="text" id="name" name="name" required class="form-input" placeholder="Jane Smith" />
+      </div>
+      <div class="form-group">
+        <label for="email" class="form-label">Work email</label>
+        <input type="email" id="email" name="email" required class="form-input" placeholder="jane@yourbrokerage.com" />
+      </div>
+      <div class="form-group">
+        <label for="company" class="form-label">Company</label>
+        <input type="text" id="company" name="company" required class="form-input" placeholder="Acme Realty" />
+      </div>
+      <div class="form-group">
+        <label for="role" class="form-label">Your role</label>
+        <input type="text" id="role" name="role" class="form-input" placeholder="Managing Broker, COO, Owner..." />
+      </div>
+      <div class="form-group">
+        <label for="message" class="form-label">What's the biggest operational headache right now? <span class="form-optional">(optional)</span></label>
+        <textarea id="message" name="message" rows="3" class="form-input form-textarea" placeholder="e.g. We're tracking 30+ deals in spreadsheets and things keep falling through cracks..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary form-submit">Book your free assessment &rarr;</button>
+      <p class="form-note">We'll respond within 24 hours. No spam, no sales sequences.</p>
+    </form>
   </div>
 </section>
 
-<style>
-  .cta-block {
-    text-align: center;
-    max-width: 720px;
-  }
+<!-- All CTA styles in global.css to avoid Tailwind 4 layer conflicts -->
 
-  .cta-heading {
-    font-size: 36px;
-    margin-bottom: 16px;
-  }
+<script>
+  const form = document.getElementById('assessment-form');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.form-submit');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
 
-  .cta-sub {
-    margin-bottom: 40px;
-  }
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
 
-  .cta-stats {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
-    margin-bottom: 40px;
-  }
+    try {
+      // TODO: Replace with Resend API endpoint (hello@heurystics.com)
+      // For now, log to console and show success
+      console.log('Form submission:', data);
 
-  .cta-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
+      // When Resend is connected, uncomment:
+      // const res = await fetch('/api/contact', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // });
 
-  .cta-stat-value {
-    font-size: 16px;
-    color: var(--navy);
-  }
+      btn.textContent = 'Sent! We\'ll be in touch.';
+      btn.style.background = '#4A7A62';
+      form.reset();
 
-  .cta-stat-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--sandstone);
-  }
-
-  .cta-divider {
-    width: 1px;
-    height: 32px;
-    background: var(--sandstone);
-  }
-
-  @media (max-width: 768px) {
-    .cta-heading {
-      font-size: 28px;
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 4000);
+    } catch (err) {
+      btn.textContent = 'Something went wrong. Try again.';
+      btn.style.background = '#c0392b';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
     }
-    .cta-stats {
-      flex-direction: column;
-      gap: 16px;
-    }
-    .cta-divider {
-      width: 40px;
-      height: 1px;
-    }
-  }
-</style>
+  });
+</script>

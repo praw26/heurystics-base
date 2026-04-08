@@ -322,6 +322,35 @@ img {
 .how-not-item p { font-size: 14px; color: var(--driftwood); line-height: 1.65; }
 .how-not-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
 
+/* CTA block with form */
+.cta-block { max-width: 960px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.cta-content { text-align: left; }
+.cta-heading { font-size: 32px; margin-bottom: 16px; }
+.cta-sub { margin-bottom: 32px; }
+.cta-stats { display: flex; align-items: center; gap: 24px; }
+.cta-stat { display: flex; flex-direction: column; gap: 4px; }
+.cta-stat-value { font-size: 16px; color: var(--navy); }
+.cta-stat-label { font-family: var(--font-mono); font-size: 11px; color: var(--sandstone); }
+.cta-divider { width: 1px; height: 32px; background: var(--sandstone); }
+.cta-form { display: flex; flex-direction: column; gap: 16px; padding: 32px; background: var(--parchment); border: 1px solid var(--sandstone); border-radius: 3px; }
+.form-group { display: flex; flex-direction: column; gap: 4px; }
+.form-label { font-size: 13px; font-weight: 600; color: var(--navy); }
+.form-optional { font-weight: 400; color: var(--sandstone); }
+.form-input { font-family: var(--font-body); font-size: 14px; padding: 10px 12px; border: 1px solid var(--limestone); border-radius: 3px; background: var(--nordic-light); color: var(--timber); transition: border-color 0.2s ease; }
+.form-input:focus { outline: none; border-color: var(--ochre); }
+.form-input::placeholder { color: var(--sandstone); }
+.form-textarea { resize: vertical; min-height: 72px; }
+.form-submit { width: 100%; justify-content: center; margin-top: 4px; }
+.form-note { font-size: 12px; color: var(--sandstone); text-align: center; }
+
+@media (max-width: 768px) {
+  .cta-block { grid-template-columns: 1fr; gap: 32px; }
+  .cta-content { text-align: center; }
+  .cta-stats { flex-direction: column; gap: 16px; }
+  .cta-divider { width: 40px; height: 1px; }
+  .cta-heading { font-size: 28px; }
+}
+
 /* Platform section (for /real-estate page) */
 .platform-cta { margin-top: 32px; text-align: center; }
 .value-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
