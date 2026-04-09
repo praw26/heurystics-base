@@ -50,32 +50,62 @@ const ogImage = 'https://pub-a836d08629454caf9059acebd385a714.r2.dev/heurystics/
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <!-- Google Tag Manager -->
-  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NVGCP6LC');</script>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNX0FCKM5G"></script>
+  <!-- Analytics: only load after cookie consent -->
   <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-TNX0FCKM5G');
+    function loadAnalytics() {
+      if (document.querySelector('script[src*="googletagmanager.com/gtm.js"]')) return;
+      // GTM
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NVGCP6LC');
+      // gtag
+      var g=document.createElement('script');g.async=true;
+      g.src='https://www.googletagmanager.com/gtag/js?id=G-TNX0FCKM5G';
+      document.head.appendChild(g);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-TNX0FCKM5G');
+    }
+    if (localStorage.getItem('cookie-consent') === 'accepted') loadAnalytics();
   </script>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVGCP6LC"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <Nav />
   <main>
     <slot />
   </main>
   <Footer />
   <ContactModal />
+
+  <!-- Cookie consent banner -->
+  <div id="cookie-banner" class="cookie-banner" style="display:none;">
+    <p>We use cookies for analytics to improve our site. <a href="/privacy">Privacy policy</a></p>
+    <div class="cookie-actions">
+      <button id="cookie-accept" class="btn btn-primary btn-sm">Accept</button>
+      <button id="cookie-decline" class="btn btn-outline btn-sm">Decline</button>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function() {
+      var consent = localStorage.getItem('cookie-consent');
+      if (!consent) {
+        document.getElementById('cookie-banner').style.display = 'flex';
+      }
+      document.getElementById('cookie-accept')?.addEventListener('click', function() {
+        localStorage.setItem('cookie-consent', 'accepted');
+        document.getElementById('cookie-banner').style.display = 'none';
+        loadAnalytics();
+      });
+      document.getElementById('cookie-decline')?.addEventListener('click', function() {
+        localStorage.setItem('cookie-consent', 'declined');
+        document.getElementById('cookie-banner').style.display = 'none';
+      });
+    })();
+  </script>
 
   <script>
     // Subtle scroll animation — content is ALWAYS visible, animation is cosmetic only
