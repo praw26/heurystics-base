@@ -73,7 +73,10 @@ const featured = caseStudies[0];
       <div class="cta-box">
         <h2>Got a process worth automating?</h2>
         <p>30 minutes. No deck, no commitment — just a look at where the time is going and whether AI is actually the answer. Sometimes it isn't, and I'll say so.</p>
-        <a href="/contact" class="btn-primary">Get in touch</a>
+        <div class="cta-action">
+          <a href="/contact" class="btn-primary">Get in touch</a>
+          <img src="/images/hand-point.png" alt="" aria-hidden="true" class="cta-hand" width="130" height="65" loading="lazy" />
+        </div>
         <p class="cta-ps">P.S. — if there's no real use case, you'll know in the first five minutes. That's the whole pitch.</p>
       </div>
     </div>
@@ -124,5 +127,8 @@ const featured = caseStudies[0];
   .cta-box { border: 1px solid var(--border); border-radius: 8px; padding: 48px 36px; background: var(--panel); }
   .cta-box h2 { font-family: var(--display); font-size: clamp(24px, 3.6vw, 34px); margin: 0 0 16px; max-width: 18ch; }
   .cta-box p { color: var(--text-muted); margin: 0 0 26px; max-width: 50ch; }
+  .cta-action { display: flex; align-items: center; gap: 4px; }
+  .cta-hand { transform: rotate(-8deg) scaleX(-1); opacity: 0.85; margin-top: 10px; }
   .cta-ps { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); margin: 18px 0 0; max-width: 50ch; }
+  @media (max-width: 560px) { .cta-hand { display: none; } }
 </style>
