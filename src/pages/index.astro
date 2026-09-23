@@ -13,23 +13,28 @@ const featured = caseStudies[0];
       <span class="dot"></span>
       OPERATOR STATUS: ACTIVE // STOCKHOLM, SE
     </div>
-    <h1 class="hero-head">AI deployment. Now and for real.</h1>
+    <h1 class="hero-head">AI deployment. Now and for
+      <span class="squiggle-word">real<svg class="squiggle" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2,8 Q17,1 32,8 T62,8 T92,8 T122,8 T152,8 T182,8" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span>.
+    </h1>
     <p class="hero-sub">I find the boring, manual, repetitive parts of a business — and build small AI tools and connectors that actually save time. Not slideware. Deployed systems, in production, documented in the open.</p>
     <div class="hero-ctas">
       <a href="/contact" class="btn-primary">Find your first use case</a>
       <a href="/work" class="btn-ghost">See the work</a>
     </div>
 
-    <div class="log-panel">
-      <div class="log-bar">
-        <span>#silk-route-ops <span class="chip">· live agent</span></span>
-        <span>telegram // openclaw</span>
-      </div>
-      <div class="log-body">
-        <div class="log-line"><span class="t">08:41</span><span class="who">agent</span><span class="msg">Morning brief: 14 orders past 24h, 6 markets. Reorder flag: 2 B2B accounts due.</span></div>
-        <div class="log-line"><span class="t">08:44</span><span class="who">pallav</span><span class="msg">mark #SR-4021 fulfilled</span></div>
-        <div class="log-line"><span class="t">08:44</span><span class="who">agent</span><span class="msg">Done — #SR-4021 marked fulfilled in Shopify. Production sheet row added.</span></div>
-        <div class="log-line"><span class="t">08:52</span><span class="who">agent</span><span class="msg">Found vendor order confirmation in Drive — reorder due in 9 days, flagged in Notion.</span></div>
+    <div class="log-wrap">
+      <div class="badge-sticker">No team.<br>No deck.<br>Just me.</div>
+      <div class="log-panel">
+        <div class="log-bar">
+          <span>#silk-route-ops <span class="chip">· live agent</span></span>
+          <span>telegram // openclaw</span>
+        </div>
+        <div class="log-body">
+          <div class="log-line"><span class="t">08:41</span><span class="who">agent</span><span class="msg">Morning brief: 14 orders past 24h, 6 markets. Reorder flag: 2 B2B accounts due.</span></div>
+          <div class="log-line"><span class="t">08:44</span><span class="who">pallav</span><span class="msg">mark #SR-4021 fulfilled</span></div>
+          <div class="log-line"><span class="t">08:44</span><span class="who">agent</span><span class="msg">Done — #SR-4021 marked fulfilled in Shopify. Production sheet row added.</span></div>
+          <div class="log-line"><span class="t">08:52</span><span class="who">agent</span><span class="msg">Found vendor order confirmation in Drive — reorder due in 9 days, flagged in Notion.</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -51,8 +56,8 @@ const featured = caseStudies[0];
   {featured && (
     <section id="case-teaser">
       <div class="wrap">
-        <div class="section-label">// proof</div>
-        <h2 class="section-head">First deployment: an e-commerce operations agent.</h2>
+        <div class="section-label">// exhibit A</div>
+        <h2 class="section-head">I ran this on my own company first. Seemed only fair.</h2>
         <div class="case-card">
           <span class="case-tag">CASE STUDY</span>
           <h3>{featured.data.title}</h3>
@@ -67,8 +72,9 @@ const featured = caseStudies[0];
     <div class="wrap">
       <div class="cta-box">
         <h2>Got a process worth automating?</h2>
-        <p>30 minutes. No deck, no commitment — just a look at where the time is going and whether AI is actually the answer.</p>
+        <p>30 minutes. No deck, no commitment — just a look at where the time is going and whether AI is actually the answer. Sometimes it isn't, and I'll say so.</p>
         <a href="/contact" class="btn-primary">Get in touch</a>
+        <p class="cta-ps">P.S. — if there's no real use case, you'll know in the first five minutes. That's the whole pitch.</p>
       </div>
     </div>
   </section>
@@ -79,10 +85,21 @@ const featured = caseStudies[0];
   .status-row { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); margin-bottom: 28px; }
   .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(255,74,46,0.15); }
   h1.hero-head { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 6vw, 58px); line-height: 1.08; letter-spacing: -0.01em; margin: 0 0 26px; max-width: 14ch; }
+  .squiggle-word { position: relative; display: inline-block; color: var(--accent); }
+  .squiggle { position: absolute; left: 1px; right: 1px; bottom: -0.14em; width: calc(100% - 2px); height: 0.16em; color: var(--accent); }
   p.hero-sub { font-size: 18px; color: var(--text-muted); max-width: 46ch; margin: 0 0 36px; }
   .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 
-  .log-panel { margin-top: 64px; background: var(--dark); border: 1px solid var(--dark-border); border-radius: 10px; overflow: hidden; box-shadow: 0 16px 40px rgba(22,21,15,0.14); }
+  .log-wrap { position: relative; margin-top: 72px; }
+  .badge-sticker {
+    position: absolute; top: -22px; right: 18px; z-index: 2;
+    background: var(--panel); border: 1.5px dashed var(--text); border-radius: 50%;
+    width: 84px; height: 84px; display: flex; align-items: center; justify-content: center;
+    text-align: center; font-family: var(--mono); font-size: 10px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.5; color: var(--text);
+    transform: rotate(8deg); box-shadow: 0 6px 16px rgba(22,21,15,0.12);
+  }
+  .log-panel { background: var(--dark); border: 1px solid var(--dark-border); border-radius: 10px; overflow: hidden; box-shadow: 0 16px 40px rgba(22,21,15,0.14); }
   .log-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--dark-border); font-family: var(--mono); font-size: 12px; color: #8C897A; }
   .log-bar .chip { color: var(--accent); font-weight: 500; }
   .log-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
@@ -107,4 +124,5 @@ const featured = caseStudies[0];
   .cta-box { border: 1px solid var(--border); border-radius: 8px; padding: 48px 36px; background: var(--panel); }
   .cta-box h2 { font-family: var(--display); font-size: clamp(24px, 3.6vw, 34px); margin: 0 0 16px; max-width: 18ch; }
   .cta-box p { color: var(--text-muted); margin: 0 0 26px; max-width: 50ch; }
+  .cta-ps { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); margin: 18px 0 0; max-width: 50ch; }
 </style>

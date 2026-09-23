@@ -4,7 +4,7 @@ const { current = '' } = Astro.props;
 ---
 <header class="site">
   <div class="wrap nav-inner">
-    <a href="/" class="logo">HEUR<span>Y</span>STICS</a>
+    <a href="/" class="logo">HEUR<span>Y</span>STICS<span class="logo-dot" aria-hidden="true"></span></a>
     <nav class="links">
       <a href="/" class={current === 'home' ? 'active' : ''}>Home</a>
       <a href="/work" class={current === 'work' ? 'active' : ''}>Work</a>
@@ -17,8 +17,10 @@ const { current = '' } = Astro.props;
 <style>
   header.site { position: sticky; top: 0; z-index: 20; background: rgba(246,243,236,0.86); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
-  .logo { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; text-decoration: none; }
+  .logo { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; text-decoration: none; display: inline-flex; align-items: center; }
   .logo span { color: var(--accent); }
+  .logo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-left: 6px; box-shadow: 0 0 0 3px rgba(255,74,46,0.15); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
   nav.links { display: flex; gap: 28px; align-items: center; }
   nav.links a { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color .15s ease; }
   nav.links a:hover, nav.links a:focus-visible { color: var(--text); }
