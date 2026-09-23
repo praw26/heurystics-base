@@ -1,125 +1,108 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import CTABlock from '../../components/CTABlock.astro';
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('case-studies');
-  return entries.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
+  const caseStudies = await getCollection('case-studies');
+  return caseStudies.map((cs) => ({
+    params: { slug: cs.slug },
+    props: { cs }
   }));
 }
 
-interface Props {
-  entry: CollectionEntry<'case-studies'>;
-}
-
-const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { cs } = Astro.props;
+const { Content } = await cs.render();
 ---
-
-<BaseLayout title={`${entry.data.title} — Heurystics`} description={entry.data.summary}>
-
-  <section class="section">
-    <div class="container" style="max-width: 760px;">
-      <a href="/work" class="back-link fade-up">&larr; All work</a>
-      <p class="eyebrow fade-up delay-1" style="margin-top: 24px;">{entry.data.status}</p>
-      <h1 class="fade-up delay-2">{entry.data.title}</h1>
-      <div class="work-card-tags fade-up delay-3" style="margin-top: 20px;">
-        {entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
-      </div>
-    </div>
+<Layout title={`${cs.data.title} — Heurystics`} description={cs.data.summary} current="work">
+  <section class="page-head wrap" style="border-top:none;">
+    <div class="section-label">// case study</div>
+    <h1 class="page-title">{cs.data.title}</h1>
+    <div class="status-pill"><span class="dot"></span>{cs.data.statusLabel}</div>
   </section>
 
-  <section class="section" style="padding-top: 0;">
-    <div class="container case-study-content fade-up">
+  {cs.data.stats && (
+    <section style="padding-top:0;">
+      <div class="wrap narrow">
+        <div class="stat-row">
+          {cs.data.stats.map((stat) => (
+            <div class="stat">
+              <div class="n">{stat.value}</div>
+              <div class="l">{stat.label.toUpperCase()}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {cs.data.videoUrl && (
+    <section>
+      <div class="wrap narrow">
+        <div class="video-wrap">
+          <iframe src={cs.data.videoUrl} frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class={cs.data.stats ? '' : ''}>
+    <div class="wrap narrow prose">
       <Content />
     </div>
   </section>
 
-  <CTABlock />
+  {cs.data.links && cs.data.links.length > 0 && (
+    <section>
+      <div class="wrap narrow">
+        <h2 class="h">Links</h2>
+        <div class="link-list">
+          {cs.data.links.map((link) => (
+            <a href={link.url} target="_blank" rel="noopener" class="btn-ghost">{link.label}</a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
-</BaseLayout>
+  <section>
+    <div class="wrap narrow">
+      <h2 class="h">Stack</h2>
+      <div class="stack-tags">
+        {cs.data.stack.map((tech) => <span class="tag">{tech}</span>)}
+      </div>
+    </div>
+  </section>
+</Layout>
 
-<style is:global>
-  .back-link {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--sandstone);
-  }
+<style>
+  .page-head { padding: 64px 0 24px; }
+  h1.page-title { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 5vw, 44px); max-width: 20ch; margin: 0 0 22px; }
+  .status-pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 20px; padding: 6px 14px; }
+  .status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-  .back-link:hover {
-    color: var(--ochre);
-  }
+  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .stat { background: var(--panel); padding: 22px 20px; }
+  .stat .n { font-family: var(--display); font-size: 26px; font-weight: 600; color: var(--accent); }
+  .stat .l { font-family: var(--mono); font-size: 11.5px; color: var(--text-dim); margin-top: 6px; }
+  @media (max-width: 680px) { .stat-row { grid-template-columns: 1fr; } }
 
-  .case-study-content {
-    max-width: 760px;
-  }
+  .video-wrap { position: relative; padding-top: 56.25%; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+  .video-wrap iframe { position: absolute; top:0; left:0; width:100%; height:100%; }
 
-  .case-study-content h2 {
-    margin-top: 48px;
-    margin-bottom: 12px;
-    font-size: 24px;
-  }
+  h2.h { font-family: var(--display); font-weight: 600; font-size: 20px; margin: 0 0 16px; }
+  .link-list, .stack-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+  .stack-tags .tag { font-family: var(--mono); font-size: 12px; color: var(--text-muted); border: 1px solid var(--border); border-radius: 3px; padding: 6px 12px; }
 
-  .case-study-content h3 {
-    margin-top: 32px;
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-
-  .case-study-content p {
-    font-size: 15px;
-    color: var(--driftwood);
-    line-height: 1.8;
-    margin-bottom: 14px;
-  }
-
-  .case-study-content ul {
-    padding-left: 22px;
-    margin-bottom: 16px;
-  }
-
-  .case-study-content li {
-    font-size: 14px;
-    color: var(--driftwood);
-    line-height: 1.75;
-    margin-bottom: 6px;
-  }
-
-  .case-study-content strong {
-    color: var(--navy);
-  }
-
-  .case-study-content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 13px;
-  }
-
-  .case-study-content th,
-  .case-study-content td {
-    text-align: left;
-    padding: 10px 14px;
-    border: 1px solid var(--limestone);
-  }
-
-  .case-study-content th {
-    background: var(--navy);
-    color: #fff;
-    font-family: var(--font-mono);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 11px;
-  }
-
-  .case-study-content code {
-    background: var(--parchment);
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-size: 13px;
-  }
+  .prose { color: var(--text-muted); font-size: 16px; }
+  .prose :global(h2) { font-family: var(--display); color: var(--text); font-size: 20px; font-weight: 600; margin: 36px 0 14px; }
+  .prose :global(h2:first-child) { margin-top: 0; }
+  .prose :global(p) { margin: 0 0 16px; }
+  .prose :global(ul) { padding-left: 20px; margin: 0 0 16px; }
+  .prose :global(li) { margin-bottom: 8px; }
+  .prose :global(li strong) { color: var(--text); }
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 12px 0 20px; }
+  .prose :global(tr) { border-top: 1px solid var(--border); }
+  .prose :global(td), .prose :global(th) { padding: 10px 12px 10px 0; font-size: 14.5px; text-align: left; }
+  .prose :global(th) { color: var(--text-dim); font-family: var(--mono); font-weight: 500; font-size: 12px; }
+  .prose :global(code) { font-family: var(--mono); background: var(--panel); padding: 2px 6px; border-radius: 3px; font-size: 13px; color: var(--accent); }
 </style>

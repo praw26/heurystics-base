@@ -1,197 +1,57 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import CTABlock from '../components/CTABlock.astro';
+import Layout from '../layouts/Layout.astro';
 ---
+<Layout title="About — Heurystics" current="about">
+  <section class="page-head wrap" style="border-top:none;">
+    <div class="section-label">// about</div>
+    <h1 class="page-title">A one-person consultancy, in practice.</h1>
+    <p class="lead">Heurystics is Pallav — this is a personal playground as much as a practice. Every use case, working or not, gets written up in public.</p>
+  </section>
 
-<BaseLayout
-  title="About — Heurystics"
-  description="Pallav Rawat — 8+ years across data, tech, and analytics. Now building and deploying AI systems in the open, one real use case at a time."
->
-
-  <!-- Hero -->
-  <section class="section">
-    <div class="container" style="max-width: 800px;">
-      <h1 class="fade-up">I'm Pallav. Heurystics is my playground for putting AI to work.</h1>
-      <p class="lead fade-up delay-1" style="margin-top: 16px;">
-        Not a polished agency — a one-person consultancy in practice. Part client work, part
-        personal playground, all of it public. I find the boring, manual, repetitive stuff in a
-        workflow, then build small AI tools and connectors that save time and improve efficiency.
-      </p>
+  <section>
+    <div class="wrap narrow">
+      <h2 class="h">What I do</h2>
+      <p class="body">I help businesses find real use cases and put AI to work — identifying the boring, manual, repetitive stuff in a workflow, then building small AI tools and connectors that save time and improve efficiency.</p>
+      <p class="body">I'm currently also open to contract engagements: AI requirements engineering, AI product management, AI forward deployed engineering, data analysis, and business analysis.</p>
     </div>
   </section>
 
-  <!-- Profile -->
-  <section class="section" style="padding-top: 0;">
-    <div class="container">
-      <div class="solo-profile fade-up">
-        <img src="/images/pallav.jpg" alt="Pallav Rawat" class="team-photo" width="160" height="160" loading="lazy" />
-        <div>
-          <h3><a href="https://www.linkedin.com/in/pallav-rawat-9aa50b70" target="_blank" rel="noopener">Pallav Rawat</a></h3>
-          <span class="team-role">AI Enablement &middot; Stockholm, Sweden</span>
-          <p>8+ years across data, tech, and analytics — data strategy, solution development, electrification, and autonomous systems. Co-founded and led Silk Route AB, building Scandinavia's first premium instant chai brand across D2C, Amazon, and retail in Europe, as CEO from Dec 2024 to Aug 2026. Now co-owner, part-time, while Silk Route runs on automated operations with minimal daily involvement.</p>
-          <p>Since Aug 2026, focused on Heurystics: finding real AI use cases inside businesses and building the tools that handle them. Open to contract engagements — AI Requirements Engineering, AI Product Manager, AI Forward Deployed Engineer, Data Analyst, Business Analyst — as well as independent consulting.</p>
+  <section>
+    <div class="wrap narrow">
+      <h2 class="h">Background</h2>
+      <div class="timeline">
+        <div class="t-row">
+          <div class="when">SEP 2026 —<br>PRESENT</div>
+          <div><div class="role">Co-Owner, Silk Route AB</div><div class="desc">Automated operations, minimum daily involvement.</div></div>
+        </div>
+        <div class="t-row">
+          <div class="when">AUG 2026 —<br>PRESENT</div>
+          <div><div class="role">Consultant, Heurystics</div><div class="desc">AI deployment consulting — use-case discovery, small AI tools, and connectors for real businesses.</div></div>
+        </div>
+        <div class="t-row">
+          <div class="when">DEC 2024 —<br>AUG 2026</div>
+          <div><div class="role">Chief Executive Officer, Silk Route AB</div><div class="desc">Co-founded Scandinavia's first premium instant chai brand — built end-to-end across D2C, Amazon, and retail across Europe.</div></div>
+        </div>
+        <div class="t-row">
+          <div class="when">8+ YEARS<br>PRIOR</div>
+          <div><div class="role">Data, tech & analytics</div><div class="desc">Across data strategy, solution development, electrification, and autonomous systems.</div></div>
         </div>
       </div>
     </div>
   </section>
+</Layout>
 
-  <!-- Why -->
-  <section class="section section-limestone">
-    <div class="container" style="max-width: 640px; text-align: center;">
-      <div class="editorial fade-up">
-        <p>The objective is to become genuinely hands-on with AI — learning by building real, working systems rather than staying theoretical. Every project turns into a case study and a build-in-public track record: an asset that stays useful whichever path opens up next.</p>
-        <p>That could be employment as an AI Forward Deployed Engineer or adjacent enablement role, independent consulting work, or eventually building something of my own. The near-term work is the same regardless of destination: build real systems, document them well, and share openly — including what didn't work.</p>
-        <p>I don't sell a fixed package. If you've got a process worth automating, I'll tell you honestly whether there's a real use case in it before we talk about building anything.</p>
-      </div>
-    </div>
-  </section>
+<style>
+  .page-head { padding: 64px 0 8px; }
+  h1.page-title { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 5vw, 44px); max-width: 16ch; margin: 0 0 22px; }
+  p.lead { color: var(--text-muted); font-size: 18px; max-width: 54ch; margin: 0; }
+  h2.h { font-family: var(--display); font-weight: 600; font-size: 20px; margin: 0 0 14px; }
+  p.body { color: var(--text-muted); font-size: 16px; margin: 0 0 14px; }
 
-  <!-- How I work -->
-  <section class="section">
-    <div class="container">
-      <div class="process-timeline">
-        <div class="process-step fade-up">
-          <div class="process-circle">
-            <span class="process-num mono">01</span>
-          </div>
-          <div class="process-content">
-            <h4>Conversation</h4>
-            <p>A short, no-pitch conversation about what's actually eating time. If there's no real use case, I'll say so.</p>
-          </div>
-        </div>
-
-        <div class="process-line"></div>
-
-        <div class="process-step fade-up delay-1">
-          <div class="process-circle">
-            <span class="process-num mono">02</span>
-          </div>
-          <div class="process-content">
-            <h4>A tightly scoped build</h4>
-            <p>The smallest thing that proves the use case, wired into the tools you already use — not a platform migration.</p>
-          </div>
-        </div>
-
-        <div class="process-line"></div>
-
-        <div class="process-step fade-up delay-2">
-          <div class="process-circle">
-            <span class="process-num mono">03</span>
-          </div>
-          <div class="process-content">
-            <h4>Public write-up, your call on what's next</h4>
-            <p>What got built, how, and whether it worked — documented as a case study. You decide whether to extend it, keep it, or stop.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <CTABlock />
-
-</BaseLayout>
-
-<style is:global>
-  .solo-profile {
-    display: flex;
-    gap: 32px;
-    align-items: flex-start;
-    max-width: 720px;
-  }
-
-  .solo-profile .team-photo {
-    flex-shrink: 0;
-    border-radius: 8px;
-    object-fit: cover;
-  }
-
-  .team-role {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--ochre);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .solo-profile p {
-    font-size: 14px;
-    color: var(--driftwood);
-    line-height: 1.7;
-    margin-top: 12px;
-  }
-
-  /* Editorial */
-  .editorial p {
-    font-size: 17px;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.75);
-  }
-
-  .editorial p + p {
-    margin-top: 20px;
-  }
-
-  /* Process timeline */
-  .process-timeline {
-    max-width: 640px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .process-step {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-  }
-
-  .process-circle {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: 2px solid var(--limestone);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    background: var(--nordic-light);
-  }
-
-  .process-num {
-    font-size: 16px;
-    color: var(--navy);
-    font-weight: 500;
-  }
-
-  .process-content {
-    flex: 1;
-    padding-top: 12px;
-  }
-
-  .process-content h4 {
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-
-  .process-content p {
-    font-size: 14px;
-    color: var(--driftwood);
-    line-height: 1.7;
-  }
-
-  .process-line {
-    width: 2px;
-    height: 32px;
-    background: var(--limestone);
-    margin-left: 27px;
-  }
-
-  @media (max-width: 768px) {
-    .solo-profile {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-  }
+  .timeline { margin-top: 8px; }
+  .t-row { display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--border); }
+  .t-row:first-child { border-top: none; }
+  .t-row .when { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); padding-top: 2px; }
+  .t-row .role { font-family: var(--display); font-size: 15.5px; font-weight: 600; margin-bottom: 5px; }
+  .t-row .desc { color: var(--text-muted); font-size: 14.5px; }
 </style>

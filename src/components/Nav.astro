@@ -1,164 +1,28 @@
 ---
-import Logo from './Logo.astro';
-
-const navLinks = [
-  { href: '/#what-i-do', label: 'What I do' },
-  { href: '/work', label: 'Work' },
-  { href: '/about', label: 'About' },
-];
+interface Props { current?: string; }
+const { current = '' } = Astro.props;
 ---
-
-<nav class="nav" id="main-nav">
-  <div class="nav-inner container">
-    <Logo size="sm" />
-
-    <div class="nav-links" id="nav-links">
-      {navLinks.map(link => (
-        <a href={link.href} class="nav-link">{link.label}</a>
-      ))}
-    </div>
-
-    <div class="nav-actions">
-      <a href="#book" class="btn btn-primary btn-sm open-modal">Get in touch</a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
+<header class="site">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">HEUR<span>Y</span>STICS</a>
+    <nav class="links">
+      <a href="/" class={current === 'home' ? 'active' : ''}>Home</a>
+      <a href="/work" class={current === 'work' ? 'active' : ''}>Work</a>
+      <a href="/about" class={current === 'about' ? 'active' : ''}>About</a>
+      <a href="/contact" class="nav-cta">Get in touch</a>
+    </nav>
   </div>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    {navLinks.map(link => (
-      <a href={link.href} class="mobile-link">{link.label}</a>
-    ))}
-  </div>
-</nav>
+</header>
 
 <style>
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(245, 243, 238, 0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s ease;
-  }
-
-  .nav.scrolled {
-    border-bottom-color: var(--limestone);
-  }
-
-  .nav-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    gap: 40px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    flex: 1;
-    justify-content: center;
-  }
-
-  .nav-link {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--driftwood);
-    transition: color 0.2s ease;
-  }
-
-  .nav-link:hover {
-    color: var(--navy);
-  }
-
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .btn-sm {
-    padding: 8px 18px;
-    font-size: 13px;
-  }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-  }
-
-  .hamburger span {
-    display: block;
-    width: 20px;
-    height: 2px;
-    background: var(--navy);
-    transition: all 0.2s ease;
-  }
-
-  .mobile-menu {
-    display: none;
-    flex-direction: column;
-    padding: 0 24px 24px;
-    gap: 16px;
-  }
-
-  .mobile-link {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--navy);
-    padding: 8px 0;
-    border-bottom: 1px solid var(--limestone);
-  }
-
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-
-    .hamburger {
-      display: flex;
-    }
-
-    .mobile-menu.open {
-      display: flex;
-    }
-  }
+  header.site { position: sticky; top: 0; z-index: 20; background: rgba(14,15,17,0.86); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { font-family: var(--display); font-weight: 600; font-size: 17px; letter-spacing: 0.02em; text-decoration: none; }
+  .logo span { color: var(--accent); }
+  nav.links { display: flex; gap: 28px; align-items: center; }
+  nav.links a { font-family: var(--sans); font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color .15s ease; }
+  nav.links a:hover, nav.links a:focus-visible { color: var(--text); }
+  nav.links a.active { color: var(--text); }
+  .nav-cta { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--bg) !important; background: var(--accent); padding: 8px 16px; border-radius: 3px; text-decoration: none; }
+  @media (max-width: 640px) { nav.links a:not(.nav-cta) { display: none; } }
 </style>
-
-<script>
-  // Scroll border
-  const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      nav?.classList.add('scrolled');
-    } else {
-      nav?.classList.remove('scrolled');
-    }
-  });
-
-  // Mobile menu toggle
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  hamburger?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('open');
-  });
-
-  // Close mobile menu on link click
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.remove('open');
-    });
-  });
-</script>

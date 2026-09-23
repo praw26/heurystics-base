@@ -1,0 +1,63 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: string;
+}
+
+const { title, description = 'AI Deployment — find use cases and deploy AI in your business, now and for real.', current = '' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+</head>
+<body>
+  <Nav current={current} />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #0E0F11; --panel: #16171A; --panel-2: #1B1C20; --border: #26282C;
+    --text: #ECECEE; --text-muted: #8C8E94; --text-dim: #5C5E64;
+    --accent: #E8A33D; --accent-dim: #7A5A28;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --display: 'Space Grotesk', 'IBM Plex Sans', system-ui, sans-serif;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--accent); color: #0E0F11; }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+  .narrow { max-width: 680px; }
+
+  section { padding: 72px 0; border-top: 1px solid var(--border); }
+  .section-label { font-family: var(--mono); font-size: 12px; color: var(--text-dim); margin-bottom: 14px; }
+  h2.section-head { font-family: var(--display); font-weight: 600; font-size: clamp(24px, 3.4vw, 32px); max-width: 20ch; margin: 0 0 20px; }
+  p.section-body { color: var(--text-muted); max-width: 60ch; font-size: 16px; }
+
+  .btn-primary { font-family: var(--sans); font-weight: 600; font-size: 14.5px; background: var(--accent); color: #0E0F11; padding: 13px 22px; border-radius: 3px; text-decoration: none; display: inline-block; }
+  .btn-ghost { font-family: var(--sans); font-weight: 500; font-size: 14.5px; color: var(--text); border: 1px solid var(--border); padding: 12px 22px; border-radius: 3px; text-decoration: none; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--text-dim); }
+</style>

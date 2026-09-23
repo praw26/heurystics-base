@@ -1,129 +1,110 @@
 ---
+import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import CTABlock from '../components/CTABlock.astro';
-import SlackChat from '../components/SlackChat.tsx';
-import '../styles/slack.css';
 
 const caseStudies = (await getCollection('case-studies')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 const featured = caseStudies[0];
 ---
+<Layout title="Heurystics — AI Deployment, now and for real" current="home">
+  <section class="hero wrap">
+    <div class="status-row">
+      <span class="dot"></span>
+      OPERATOR STATUS: ACTIVE // STOCKHOLM, SE
+    </div>
+    <h1 class="hero-head">AI deployment. Now and for real.</h1>
+    <p class="hero-sub">I find the boring, manual, repetitive parts of a business — and build small AI tools and connectors that actually save time. Not slideware. Deployed systems, in production, documented in the open.</p>
+    <div class="hero-ctas">
+      <a href="/contact" class="btn-primary">Find your first use case</a>
+      <a href="/work" class="btn-ghost">See the work</a>
+    </div>
 
-<BaseLayout
-  title="Heurystics — AI Deployment, Now and For Real"
-  description="I find the boring, manual, repetitive stuff in a business's workflow and build small AI tools and connectors that save time. Every project becomes a public case study."
->
-
-  <!-- ===== 1. HERO ===== -->
-  <section class="section hero-section">
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <p class="hero-who fade-up">AI deployment, now and for real</p>
-        <h1 class="fade-up delay-1">
-          I find the use case, then <em class="hero-em">deploy AI</em> that actually runs it.
-        </h1>
-        <p class="lead hero-body fade-up delay-2">
-          Heurystics is my playground for putting AI to real, practical use inside businesses.
-          I look for the boring, manual, repetitive stuff in a workflow, then build small AI
-          tools and connectors that save time — inside the tools you already use, not another
-          dashboard to check.
-        </p>
-        <div class="hero-buttons fade-up delay-3">
-          <a href="/work" class="btn btn-primary">See the work &rarr;</a>
-          <a href="#book" class="btn btn-outline open-modal">Got a process worth automating? &rarr;</a>
-        </div>
-        <p class="hero-friction fade-up delay-3">Every project becomes a public case study — what got built, how, and whether it actually worked.</p>
+    <div class="log-panel">
+      <div class="log-bar">
+        <span>#silk-route-ops <span class="chip">· live agent</span></span>
+        <span>telegram // openclaw</span>
       </div>
-      <div class="hero-visual fade-up delay-3">
-        <SlackChat client:visible />
-        <p class="slack-caption">A real agent I built for my own company, controlled entirely from Telegram. Full write-up in the work section.</p>
+      <div class="log-body">
+        <div class="log-line"><span class="t">08:41</span><span class="who">agent</span><span class="msg">Morning brief: 14 orders past 24h, 6 markets. Reorder flag: 2 B2B accounts due.</span></div>
+        <div class="log-line"><span class="t">08:44</span><span class="who">pallav</span><span class="msg">mark #SR-4021 fulfilled</span></div>
+        <div class="log-line"><span class="t">08:44</span><span class="who">agent</span><span class="msg">Done — #SR-4021 marked fulfilled in Shopify. Production sheet row added.</span></div>
+        <div class="log-line"><span class="t">08:52</span><span class="who">agent</span><span class="msg">Found vendor order confirmation in Drive — reorder due in 9 days, flagged in Notion.</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 2. WHAT I DO ===== -->
-  <section class="section" id="what-i-do">
-    <div class="container">
-      <p class="eyebrow fade-up">What I do</p>
-      <h2 class="fade-up delay-1">Not an industry. A pattern I look for anywhere.</h2>
-
-      <div class="use-case-cards">
-        <div class="use-case-card card fade-up">
-          <div class="uc-top navy-bg">
-            <div class="uc-stat-group">
-              <span class="uc-stat-number">01</span>
-              <span class="uc-stat-desc">Find the use case</span>
-            </div>
-          </div>
-          <div class="uc-body">
-            <h4>Watch how you actually work</h4>
-            <p>Not a workshop, not a survey. I sit with how a team actually operates and find the specific task that's boring, repetitive, and worth automating — and I'll say so if there isn't one yet.</p>
-          </div>
-        </div>
-
-        <div class="use-case-card card fade-up delay-1">
-          <div class="uc-top navy-bg">
-            <div class="uc-stat-group">
-              <span class="uc-stat-number">02</span>
-              <span class="uc-stat-desc">Build the tool</span>
-            </div>
-          </div>
-          <div class="uc-body">
-            <h4>Wire it into what you already use</h4>
-            <p>Small, scoped AI agents and connectors — Shopify, Drive, Notion, Slack, Telegram, whatever the team lives in. No new tool for people to learn.</p>
-          </div>
-        </div>
-
-        <div class="use-case-card card fade-up delay-2">
-          <div class="uc-top navy-bg">
-            <div class="uc-stat-group">
-              <span class="uc-stat-number">03</span>
-              <span class="uc-stat-desc">Prove it works</span>
-            </div>
-          </div>
-          <div class="uc-body">
-            <h4>Publish what actually happened</h4>
-            <p>What got built, how, and whether it held up in real use — including what didn't work. Getting an agent connected is the easy 20%. Making it reliable is the hard 80%, and that's the part I document.</p>
-          </div>
-        </div>
+  <section id="pillars">
+    <div class="wrap">
+      <div class="section-label">// what changes</div>
+      <h2 class="section-head">Four things, not forty features.</h2>
+      <p class="section-body">Everything I build reduces to one of these. No platform to learn, no dashboard nobody opens — tools that sit inside the systems you already use.</p>
+      <div class="cap-grid">
+        <div class="cap"><h3>Use-case discovery</h3><p>Map how a workflow actually runs today, and find the specific repetitive step worth automating first — before writing a line of code.</p></div>
+        <div class="cap"><h3>Small tools & connectors</h3><p>Lightweight AI wired directly into the tools already in use — Shopify, Drive, Notion, Trello — not a new system to adopt.</p></div>
+        <div class="cap"><h3>Deployed, not demoed</h3><p>A working prototype in a chat window is not the finish line. The bar is: does it run unattended, and does someone actually use it.</p></div>
+        <div class="cap"><h3>Public case studies</h3><p>Every project is documented — what got built, how, what broke, and whether it worked. No black box, no vague success metrics.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 3. FEATURED CASE STUDY ===== -->
   {featured && (
-    <section class="section section-limestone" id="featured-work">
-      <div class="container">
-        <p class="eyebrow fade-up">Latest work</p>
-        <h2 class="fade-up delay-1">{featured.data.title}</h2>
-        <p class="lead fade-up delay-2" style="max-width: 640px; margin-top: 12px;">{featured.data.summary}</p>
-        <div class="work-card-tags fade-up delay-3" style="margin-top: 20px;">
-          {featured.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+    <section id="case-teaser">
+      <div class="wrap">
+        <div class="section-label">// proof</div>
+        <h2 class="section-head">First deployment: an e-commerce operations agent.</h2>
+        <div class="case-card">
+          <span class="case-tag">CASE STUDY</span>
+          <h3>{featured.data.title}</h3>
+          <p>{featured.data.summary}</p>
+          <a href={`/work/${featured.slug}`} class="btn-ghost">Read the full case study</a>
         </div>
-        <a href={`/work/${featured.slug}`} class="btn btn-navy fade-up delay-3" style="margin-top: 28px;">Read the full case study &rarr;</a>
       </div>
     </section>
   )}
 
-  <!-- ===== 4. WHERE THIS GOES ===== -->
-  <section class="section" id="where-this-goes">
-    <div class="container" style="max-width: 720px;">
-      <p class="eyebrow fade-up">Where this goes</p>
-      <h2 class="fade-up delay-1">Employment, consulting, or founding — the near-term work is the same.</h2>
-      <p class="lead fade-up delay-2" style="margin-top: 16px;">
-        I'm building real systems, documenting them honestly, and sharing them openly — whether
-        that leads to a contract role as an AI enablement / forward-deployed engineer, ongoing
-        consulting work, or something I end up building on my own. Previously 8+ years across
-        data strategy, solution development, and autonomous systems, and co-founder of Silk Route,
-        Scandinavia's first premium instant-chai brand. More on <a href="/about">the About page</a>.
-      </p>
+  <section id="contact-cta" class="cta">
+    <div class="wrap">
+      <div class="cta-box">
+        <h2>Got a process worth automating?</h2>
+        <p>30 minutes. No deck, no commitment — just a look at where the time is going and whether AI is actually the answer.</p>
+        <a href="/contact" class="btn-primary">Get in touch</a>
+      </div>
     </div>
   </section>
+</Layout>
 
-  <CTABlock />
+<style>
+  section.hero { padding: 96px 0 64px; border-top: none; }
+  .status-row { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); margin-bottom: 28px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(232,163,61,0.15); }
+  h1.hero-head { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 6vw, 58px); line-height: 1.08; letter-spacing: -0.01em; margin: 0 0 26px; max-width: 14ch; }
+  p.hero-sub { font-size: 18px; color: var(--text-muted); max-width: 46ch; margin: 0 0 36px; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 
-</BaseLayout>
+  .log-panel { margin-top: 64px; background: var(--panel); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .log-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+  .log-bar .chip { color: var(--accent); font-weight: 500; }
+  .log-body { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+  .log-line { font-family: var(--mono); font-size: 13px; line-height: 1.6; display: flex; gap: 12px; }
+  .log-line .t { color: var(--text-dim); flex-shrink: 0; }
+  .log-line .who { color: var(--accent); flex-shrink: 0; }
+  .log-line .msg { color: var(--text-muted); }
 
-<!-- Styles in global.css to avoid Tailwind 4 layer conflicts -->
+  .cap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 40px; border-radius: 6px; overflow: hidden; }
+  .cap { background: var(--panel); padding: 28px 26px; }
+  .cap h3 { font-family: var(--display); font-size: 17px; font-weight: 600; margin: 0 0 10px; }
+  .cap p { color: var(--text-muted); font-size: 14.5px; margin: 0; }
+  @media (max-width: 680px) { .cap-grid { grid-template-columns: 1fr; } }
+
+  .case-card { margin-top: 36px; border: 1px solid var(--border); border-radius: 6px; background: linear-gradient(180deg, var(--panel-2), var(--panel)); padding: 30px; }
+  .case-tag { font-family: var(--mono); font-size: 11.5px; color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 3px; padding: 3px 8px; display: inline-block; margin-bottom: 16px; }
+  .case-card h3 { font-family: var(--display); font-size: 21px; margin: 0 0 12px; }
+  .case-card p { color: var(--text-muted); font-size: 15px; max-width: 62ch; }
+  .case-card .btn-ghost { margin-top: 22px; }
+
+  section.cta { text-align: left; }
+  .cta-box { border: 1px solid var(--border); border-radius: 8px; padding: 48px 36px; background: var(--panel); }
+  .cta-box h2 { font-family: var(--display); font-size: clamp(24px, 3.6vw, 34px); margin: 0 0 16px; max-width: 18ch; }
+  .cta-box p { color: var(--text-muted); margin: 0 0 26px; max-width: 50ch; }
+</style>

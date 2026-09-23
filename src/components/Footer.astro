@@ -1,119 +1,15 @@
 ---
-import Logo from './Logo.astro';
 ---
-
-<footer class="footer">
-  <div class="container footer-grid">
-    <div class="footer-col footer-brand">
-      <Logo size="sm" light={true} />
-      <p class="footer-tagline">
-        AI deployment — find use cases and deploy AI in your business, now and for real.
-      </p>
-    </div>
-
-    <div class="footer-col">
-      <h4 class="footer-heading">Site</h4>
-      <ul class="footer-list">
-        <li><a href="/work">Work</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="mailto:hello@heurystics.com">Contact</a></li>
-        <li><a href="/privacy">Privacy</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4 class="footer-heading">Connect</h4>
-      <ul class="footer-list">
-        <li><a href="https://www.linkedin.com/in/pallav-rawat-9aa50b70" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="#book" class="open-modal">Get in touch</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bar">
-    <div class="container footer-bar-inner">
-      <span>&copy; 2026 Heurystics — Pallav Rawat.</span>
-      <span>Stockholm, Sweden</span>
-    </div>
+<footer>
+  <div class="wrap foot-row">
+    <span>HEURYSTICS // STOCKHOLM, SE // 2026</span>
+    <span><a href="https://www.linkedin.com/in/pallav-rawat-9aa50b70" target="_blank" rel="noopener">LinkedIn</a></span>
   </div>
 </footer>
 
 <style>
-  .footer {
-    background: var(--navy-dark);
-    color: rgba(255, 255, 255, 0.6);
-    padding-top: 72px;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 48px;
-    padding-bottom: 48px;
-  }
-
-  .footer-tagline {
-    margin-top: 16px;
-    font-size: 14px;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.45);
-    max-width: 280px;
-  }
-
-  .footer-heading {
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 16px;
-    letter-spacing: 0.02em;
-  }
-
-  .footer-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .footer-list a {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.45);
-    transition: color 0.2s ease;
-  }
-
-  .footer-list a:hover {
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  .footer-bar {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 20px 0;
-  }
-
-  .footer-bar-inner {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    font-family: var(--font-mono);
-    color: rgba(255, 255, 255, 0.25);
-  }
-
-  @media (max-width: 768px) {
-    .footer-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-    .footer-brand {
-      grid-column: 1 / -1;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .footer-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+  footer { border-top: 1px solid var(--border); padding: 32px 0 48px; }
+  .foot-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+  .foot-row a { color: var(--text-dim); text-decoration: none; }
+  .foot-row a:hover { color: var(--text-muted); }
 </style>

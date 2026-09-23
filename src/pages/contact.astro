@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Contact — Heurystics" current="contact">
+  <section class="contact-main wrap" style="border-top:none;">
+    <div class="section-label">// get in touch</div>
+    <h1 class="page-title">Got a process worth automating?</h1>
+    <p class="lead">30 minutes. No deck, no commitment — just a look at where the time is going and whether AI is actually the answer.</p>
+
+    <div class="contact-card">
+      <div class="contact-row"><span class="k">EMAIL</span><a href="mailto:hello@heurystics.com" class="v">hello@heurystics.com</a></div>
+      <div class="contact-row"><span class="k">LINKEDIN</span><a href="https://www.linkedin.com/in/pallav-rawat-9aa50b70" target="_blank" rel="noopener" class="v">Connect</a></div>
+      <div class="contact-row"><span class="k">BASED IN</span><span class="v">Stockholm, Sweden</span></div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-main { padding: 96px 0; }
+  h1.page-title { font-family: var(--display); font-weight: 600; font-size: clamp(30px, 5vw, 44px); max-width: 16ch; margin: 18px 0; }
+  p.lead { color: var(--text-muted); font-size: 17px; max-width: 50ch; margin: 0 0 40px; }
+
+  .contact-card { border: 1px solid var(--border); border-radius: 8px; background: var(--panel); padding: 36px; max-width: 480px; }
+  .contact-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-top: 1px solid var(--border); }
+  .contact-row:first-child { border-top: none; padding-top: 0; }
+  .contact-row:last-child { padding-bottom: 0; }
+  .contact-row .k { font-family: var(--mono); font-size: 12px; color: var(--text-dim); }
+  .contact-row .v { font-family: var(--sans); font-size: 15px; font-weight: 500; }
+  .contact-row a.v { color: var(--accent); text-decoration: none; }
+  .contact-row a.v:hover { text-decoration: underline; }
+</style>
