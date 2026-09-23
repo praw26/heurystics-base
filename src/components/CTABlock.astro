@@ -1,59 +1,38 @@
 <section class="section section-limestone" id="book">
   <div class="container cta-block">
     <div class="cta-content">
-      <h2 class="cta-heading">One call. A clear picture of what stops being your problem.</h2>
+      <h2 class="cta-heading">Got a process worth automating?</h2>
       <p class="lead cta-sub">
-        30 minutes. We'll show you exactly which operational problems disappear first,
-        how fast you see the difference, and what the revenue impact looks like — even if you never work with us.
+        Tell me what's eating your team's time. If there's a real use case in it, I'll tell you
+        honestly — even if the answer is "not yet."
       </p>
-
-      <div class="cta-stats">
-        <div class="cta-stat">
-          <span class="stat-number cta-stat-value">30 min</span>
-          <span class="cta-stat-label">Assessment call</span>
-        </div>
-        <div class="cta-divider"></div>
-        <div class="cta-stat">
-          <span class="stat-number cta-stat-value">2-4 weeks</span>
-          <span class="cta-stat-label">First results visible</span>
-        </div>
-        <div class="cta-divider"></div>
-        <div class="cta-stat">
-          <span class="stat-number cta-stat-value">0</span>
-          <span class="cta-stat-label">Data leaving your servers</span>
-        </div>
-      </div>
     </div>
 
     <!-- Mobile: button that opens modal -->
     <div class="cta-mobile-btn">
-      <a href="#book" class="btn btn-primary open-modal" style="width: 100%; justify-content: center;">Book your assessment &rarr;</a>
+      <a href="#book" class="btn btn-primary open-modal" style="width: 100%; justify-content: center;">Get in touch &rarr;</a>
     </div>
 
     <!-- Desktop: inline form -->
-    <form class="cta-form cta-inline-form" id="assessment-form" action="/api/contact" method="POST">
+    <form class="cta-form cta-inline-form" id="assessment-form">
       <div class="form-group">
         <label for="name" class="form-label">Your name</label>
         <input type="text" id="name" name="name" required class="form-input" placeholder="Jane Smith" />
       </div>
       <div class="form-group">
-        <label for="email" class="form-label">Work email</label>
-        <input type="email" id="email" name="email" required class="form-input" placeholder="jane@yourbrokerage.com" />
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" name="email" required class="form-input" placeholder="jane@company.com" />
       </div>
       <div class="form-group">
-        <label for="company" class="form-label">Company</label>
-        <input type="text" id="company" name="company" required class="form-input" placeholder="Acme Realty" />
+        <label for="company" class="form-label">Company <span class="form-optional">(optional)</span></label>
+        <input type="text" id="company" name="company" class="form-input" placeholder="Where you work" />
       </div>
       <div class="form-group">
-        <label for="role" class="form-label">Your role</label>
-        <input type="text" id="role" name="role" class="form-input" placeholder="Managing Broker, COO, Owner..." />
+        <label for="message" class="form-label">What's the repetitive task worth automating?</label>
+        <textarea id="message" name="message" rows="3" class="form-input form-textarea" placeholder="e.g. We're manually reconciling orders across three tools every morning..."></textarea>
       </div>
-      <div class="form-group">
-        <label for="message" class="form-label">What's the biggest operational headache right now? <span class="form-optional">(optional)</span></label>
-        <textarea id="message" name="message" rows="3" class="form-input form-textarea" placeholder="e.g. We're tracking 30+ deals in spreadsheets and things keep falling through cracks..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary form-submit">Book your assessment &rarr;</button>
-      <p class="form-note">No commitment. We'll respond within 24 hours.</p>
+      <button type="submit" class="btn btn-primary form-submit">Send &rarr;</button>
+      <p class="form-note">Opens your email app — nothing is sent from this page.</p>
     </form>
   </div>
 </section>
@@ -61,43 +40,33 @@
 <!-- All CTA styles in global.css to avoid Tailwind 4 layer conflicts -->
 
 <script>
-  const form = document.getElementById('assessment-form');
-  form?.addEventListener('submit', async (e) => {
+  const form = document.getElementById('assessment-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = form.querySelector('.form-submit');
-    const originalText = btn.textContent;
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
+    const btn = form.querySelector('.form-submit') as HTMLButtonElement;
+    const originalText = btn.innerHTML;
 
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
+    const data = Object.fromEntries(formData) as Record<string, string>;
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+    const subject = `Automation inquiry from ${data.name}${data.company ? ' (' + data.company + ')' : ''}`;
+    const bodyLines = [
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      data.company ? `Company: ${data.company}` : null,
+      data.message ? `What's the repetitive task worth automating: ${data.message}` : null,
+    ].filter(Boolean);
 
-      if (!res.ok) throw new Error('Server error');
+    const mailto = `mailto:hello@heurystics.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+    window.location.href = mailto;
 
-      btn.textContent = 'Sent! We\'ll be in touch.';
-      btn.style.background = '#4A7A62';
+    btn.textContent = 'Opening your email app...';
+    btn.disabled = true;
+
+    setTimeout(() => {
       form.reset();
-
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 4000);
-    } catch (err) {
-      btn.textContent = 'Something went wrong. Try again.';
-      btn.style.background = '#c0392b';
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
-    }
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }, 1500);
   });
 </script>

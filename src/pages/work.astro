@@ -1,282 +1,50 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABlock from '../components/CTABlock.astro';
+
+const caseStudies = (await getCollection('case-studies')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
 ---
 
 <BaseLayout
-  title="Our Work — Heurystics"
-  description="Case studies from our founding team: AI operations for a 100+ agent brokerage, a 5-location retail chain, and an AI procurement platform. Built end-to-end, running in production."
+  title="Work — Heurystics"
+  description="Case studies of real AI systems built and deployed — what got built, how, and whether it actually worked."
 >
 
   <!-- Hero -->
   <section class="section">
     <div class="container" style="max-width: 800px;">
-      <p class="eyebrow fade-up">Our work</p>
-      <h1 class="fade-up delay-1">We build AI that runs operations.</h1>
+      <p class="eyebrow fade-up">Work</p>
+      <h1 class="fade-up delay-1">Every project becomes a public case study.</h1>
       <p class="lead fade-up delay-2" style="margin-top: 16px;">
-        Production AI deployed across real estate, retail, and procurement.
-        Today, we bring that depth to real estate exclusively.
+        What got built, how, and whether it actually worked — including what didn't.
+        This grows as I take on more use cases, client and personal.
       </p>
     </div>
   </section>
 
-  <!-- Case 1: Real Estate Brokerage -->
-  <section class="section case-section" id="case-1">
-    <div class="container">
-      <div class="case-header fade-up">
-        <span class="eyebrow">REAL ESTATE BROKERAGE &middot; 100+ AGENTS &middot; CALIFORNIA</span>
-        <h2>Commission errors went to near zero. 20+ hours of weekly manual work disappeared. Live in 6 weeks.</h2>
+  <!-- Case study list -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container work-list">
+      {caseStudies.map((cs) => (
+        <a href={`/work/${cs.id}`} class="work-card fade-up">
+          <div class="work-card-body">
+            <span class="work-card-status mono">{cs.data.status.split('—')[0].trim()}</span>
+            <h3>{cs.data.title}</h3>
+            <p>{cs.data.summary}</p>
+            <div class="work-card-tags">
+              {cs.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+            </div>
+          </div>
+          <span class="work-card-arrow">&rarr;</span>
+        </a>
+      ))}
+
+      <div class="work-more fade-up">
+        <p>More case studies land here as they're built — client work and personal projects alike.</p>
       </div>
-
-      <div class="case-challenge fade-up delay-1">
-        <h4>The situation</h4>
-        <p>
-          A growing brokerage with 100+ agents, multiple offices, and a 200-unit property management
-          portfolio. Back-office staff were tracking hundreds of deal deadlines in spreadsheets,
-          reconciling commissions by hand, chasing documents across email threads, and compiling
-          monthly reports that were stale before they were finished.
-        </p>
-      </div>
-
-      <div class="case-pain-grid fade-up delay-2">
-        <div class="case-pain-item">
-          <span class="case-pain-stat stat-number">20-25 hrs/week</span>
-          <span class="case-pain-label">spent manually tracking deal deadlines</span>
-        </div>
-        <div class="case-pain-item">
-          <span class="case-pain-stat stat-number">2-5%</span>
-          <span class="case-pain-label">of commission revenue lost to calculation errors (industry avg.)</span>
-        </div>
-        <div class="case-pain-item">
-          <span class="case-pain-stat stat-number">8-10 hours</span>
-          <span class="case-pain-label">of admin work per new listing launch</span>
-        </div>
-        <div class="case-pain-item">
-          <span class="case-pain-stat stat-number">0</span>
-          <span class="case-pain-label">real-time visibility into business performance</span>
-        </div>
-      </div>
-
-      <div class="case-solution fade-up">
-        <h4>What changed</h4>
-
-        <div class="case-ops-grid">
-          <div class="case-op">
-            <span class="case-op-result">Commission errors went to near zero</span>
-            <p>Every split. Overrides, caps, team shares, referral fees. Calculated automatically and cross-checked against title company disbursements before money moves.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Deal deadlines stopped falling through cracks</span>
-            <p>Every incoming contract parsed, every deadline extracted, 40+ concurrent deals tracked with escalating reminders. Problems flagged before they kill a deal.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Listings launched in minutes instead of days</span>
-            <p>Signed listing triggers the full marketing sequence automatically. MLS, photographer, social posts, email campaigns, property website.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Compliance violations caught before they became expensive</span>
-            <p>License expirations, insurance renewals, continuing education, and communications continuously monitored. Broker alerted before anything lapses.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Stale CRM data turned into actionable leads</span>
-            <p>Every record enriched overnight. Property history, equity estimates, life event signals. Agents get a personalized briefing before every call.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">200-unit portfolio managed with a fraction of the admin</span>
-            <p>Tenant screening, maintenance triage, vendor dispatch, lease renewals, rent collection. Handled autonomously. The team focuses on decisions, not coordination.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">CMAs delivered in 30 minutes instead of 3-5 hours</span>
-            <p>Professional, branded market analysis reports generated from live MLS data. Listing agents win more appointments by being faster.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Leadership sees the business in real time</span>
-            <p>Daily dashboards, predictive alerts for agent churn and shifting markets, weekly briefing ranked by financial impact. No more compiling reports by hand.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="case-results-block fade-up">
-        <h4>Before and after</h4>
-        <div class="case-before-after">
-          <div class="ba-row"><span class="ba-label">Commission errors</span><span class="ba-before">2-5% of revenue lost</span><span class="ba-after">Near zero</span></div>
-          <div class="ba-row"><span class="ba-label">Deal deadline tracking</span><span class="ba-before">20-25 hrs/week manual</span><span class="ba-after">Fully automated</span></div>
-          <div class="ba-row"><span class="ba-label">Listing launch time</span><span class="ba-before">8-10 hours each</span><span class="ba-after">Minutes</span></div>
-          <div class="ba-row"><span class="ba-label">CMA turnaround</span><span class="ba-before">3-5 hours</span><span class="ba-after">30 minutes</span></div>
-          <div class="ba-row"><span class="ba-label">Business reporting</span><span class="ba-before">Monthly, 1 day to compile</span><span class="ba-after">Real-time</span></div>
-        </div>
-        <p class="case-note">First operations live in 2 weeks. Full system deployed in 6 weeks. All data stays on client infrastructure.</p>
-      </div>
-
-      <div class="testimonial fade-up">
-        <blockquote class="testimonial-quote">"We stopped losing deals to missed deadlines in the first month. The commission reconciliation alone paid for the entire system before quarter end."</blockquote>
-        <div class="testimonial-author">
-          <img src="https://pub-a836d08629454caf9059acebd385a714.r2.dev/heurystics/david.webp" alt="David Petterson" class="testimonial-photo" width="48" height="48" />
-          <div class="testimonial-author-info">
-            <span class="testimonial-name">David Petterson</span>
-            <span class="testimonial-role">Managing Broker &middot; 100+ agent brokerage, California</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Case 2: Pharmacy Retail Chain -->
-  <section class="section case-section" id="case-2" style="background: var(--parchment);">
-    <div class="container">
-      <div class="case-header fade-up">
-        <span class="eyebrow">MULTI-LOCATION RETAIL &middot; 5+ STORES &middot; CALIFORNIA</span>
-        <h2>Every store on one system. Pricing, inventory, vendors, and marketing running autonomously in 12 weeks.</h2>
-      </div>
-
-      <div class="case-challenge fade-up delay-1">
-        <h4>The situation</h4>
-        <p>
-          A fast-growing pharmacy retail chain with 5+ locations and thousands of customers across
-          in-store, web, and mobile. Every store was its own silo. Pricing drifted between locations,
-          inventory was tracked manually, vendor management lived in email chains, and marketing
-          was broadcast-only with zero attribution. Leadership couldn't answer basic performance questions.
-        </p>
-        <p style="margin-top: 12px;">
-          This wasn't just an AI project. We built the entire operations platform first. POS, user
-          management, order tracking, store configuration. Then deployed AI operations on top.
-        </p>
-      </div>
-
-      <div class="case-solution fade-up">
-        <h4>What changed</h4>
-
-        <div class="case-ops-grid">
-          <div class="case-op">
-            <span class="case-op-result">Pricing inconsistencies eliminated across all stores</span>
-            <p>Every product watched in real time against the master catalog. Minor drift auto-corrected, significant deviations escalated to store managers.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Stockouts caught before they hit the shelf</span>
-            <p>Inventory synced every 60 minutes across all locations. Sell-through analysis, predictive alerts, and items flagged when stuck in back-of-house.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Vendor management went from email chains to self-service</span>
-            <p>Full vendor lifecycle handled autonomously. Credit reports, promotional compliance, contract renewals, performance attribution.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Marketing became targeted with full ROI visibility</span>
-            <p>AI-powered segmentation, multi-channel campaigns (SMS, email, push, direct mail), and attribution tracking. First time leadership could see what was actually working.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Demand became predictable</span>
-            <p>Forecasting by product, brand, and store feeds into inventory restock and timed promotions. Leadership started planning for next month instead of reacting to last month.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Customers saw relevant products, support responded in hours not days</span>
-            <p>Personalized recommendations across channels. Routine support inquiries handled automatically. Review responses drafted and posted without manual intervention.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="case-results-block fade-up">
-        <h4>Before and after</h4>
-        <div class="case-before-after">
-          <div class="ba-row"><span class="ba-label">Pricing compliance</span><span class="ba-before">Quarterly manual audits</span><span class="ba-after">24/7 autonomous</span></div>
-          <div class="ba-row"><span class="ba-label">Inventory visibility</span><span class="ba-before">Manual per-store tracking</span><span class="ba-after">Real-time + predictive alerts</span></div>
-          <div class="ba-row"><span class="ba-label">Vendor management</span><span class="ba-before">Email chains, no audit trail</span><span class="ba-after">Automated lifecycle + self-service portal</span></div>
-          <div class="ba-row"><span class="ba-label">Marketing</span><span class="ba-before">Broadcast, no attribution</span><span class="ba-after">Segmented, multi-channel, fully attributed</span></div>
-          <div class="ba-row"><span class="ba-label">New store onboarding</span><span class="ba-before">Weeks</span><span class="ba-after">Days</span></div>
-        </div>
-        <p class="case-note">Core platform live in 4 weeks. All operations deployed over 12 weeks. New locations now onboard in days.</p>
-      </div>
-
-      <div class="testimonial fade-up">
-        <blockquote class="testimonial-quote">"They built our entire operations platform and then made it intelligent. New stores used to take weeks to onboard. Now it takes days."</blockquote>
-        <div class="testimonial-author">
-          <img src="https://pub-a836d08629454caf9059acebd385a714.r2.dev/heurystics/john.webp" alt="John Oram" class="testimonial-photo" width="48" height="48" />
-          <div class="testimonial-author-info">
-            <span class="testimonial-name">John Oram</span>
-            <span class="testimonial-role">CEO &middot; Multi-location pharmacy chain, California</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Case 3: FastlaneAI -->
-  <section class="section case-section" id="case-3">
-    <div class="container">
-      <div class="case-header fade-up">
-        <span class="eyebrow">AI PRODUCT &middot; PROCUREMENT</span>
-        <h2>RFPs that took days now take minutes. Vendor analysis that took weeks now takes seconds.</h2>
-      </div>
-
-      <div class="case-challenge fade-up delay-1">
-        <h4>The situation</h4>
-        <p>
-          Procurement teams spend weeks writing RFPs, manually comparing vendors, and evaluating
-          proposals in spreadsheets. Every cycle is slow, error-prone, and expensive. We didn't
-          build this for a client. We built it as a product, from zero to live, to prove we could
-          take an entire business workflow and make it run on AI.
-        </p>
-      </div>
-
-      <div class="case-solution fade-up">
-        <h4>What changed</h4>
-
-        <div class="case-ops-grid">
-          <div class="case-op">
-            <span class="case-op-result">RFPs generated in minutes, not days</span>
-            <p>AI understands requirements, industry standards, and compliance needs. Generates comprehensive, professional RFPs from existing documents or a brief description.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Vendor analysis backed by data, not gut feel</span>
-            <p>Detailed capability assessments, financial health checks, performance predictions. Suppliers recommended based on region, quality, capacity, and track record.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Proposals evaluated consistently, not subjectively</span>
-            <p>Criteria-based scoring, automated analysis, and side-by-side comparisons. Every decision backed by a clear rationale the team can audit.</p>
-          </div>
-          <div class="case-op">
-            <span class="case-op-result">Related requests bundled automatically</span>
-            <p>Multiple RFPs and RFQs grouped intelligently. Timelines optimized, priorities managed, vendor engagement maximized across related procurements.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="case-results-block fade-up">
-        <h4>The impact</h4>
-        <div class="case-pain-grid" style="margin-bottom: 16px;">
-          <div class="case-pain-item">
-            <span class="case-pain-stat stat-number">75%</span>
-            <span class="case-pain-label">reduction in procurement cycle time</span>
-          </div>
-          <div class="case-pain-item">
-            <span class="case-pain-stat stat-number">40%</span>
-            <span class="case-pain-label">lower procurement costs through better vendor analysis</span>
-          </div>
-          <div class="case-pain-item">
-            <span class="case-pain-stat stat-number">3x</span>
-            <span class="case-pain-label">faster RFP generation</span>
-          </div>
-          <div class="case-pain-item">
-            <span class="case-pain-stat stat-number">99%</span>
-            <span class="case-pain-label">compliance rate with built-in standards</span>
-          </div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <a href="https://www.fastlaneai.io/" target="_blank" rel="noopener" class="btn btn-outline">Visit FastlaneAI &rarr;</a>
-          <span class="case-note">Complete AI product. Architecture, design, and engineering by our team.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Bridge to visitor -->
-  <section class="section section-navy">
-    <div class="container" style="max-width: 640px; text-align: center;">
-      <h2 class="fade-up" style="font-size: 28px;">These are the systems we've built. Now we do this for real estate.</h2>
-      <p class="lead fade-up delay-1" style="color: rgba(255,255,255,0.5); margin-top: 12px;">
-        Same rigor. Same team. The difference is focus. Every workflow we automated
-        across industries sharpened how we approach yours.
-      </p>
-      <a href="#book" class="btn btn-primary fade-up delay-2" style="margin-top: 24px;">Book an assessment &rarr;</a>
     </div>
   </section>
 
@@ -285,58 +53,76 @@ import CTABlock from '../components/CTABlock.astro';
 </BaseLayout>
 
 <style is:global>
-  .case-section { padding: 72px 0; }
+  .work-list {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-  .case-header { margin-bottom: 32px; }
-  .case-header h2 { margin-top: 12px; max-width: 720px; }
+  .work-card {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 32px;
+    border: 1px solid var(--limestone);
+    border-radius: 3px;
+    background: var(--nordic-light);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
 
-  .case-challenge { margin-bottom: 32px; max-width: 720px; }
-  .case-challenge h4 { font-size: 14px; font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ochre); margin-bottom: 8px; }
-  .case-challenge p { font-size: 15px; color: var(--driftwood); line-height: 1.75; }
+  .work-card:hover {
+    border-color: var(--ochre);
+    transform: translateY(-2px);
+  }
 
-  .case-pain-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
-  .case-pain-item { background: var(--navy); padding: 20px; border-radius: 3px; display: flex; flex-direction: column; gap: 4px; }
-  .case-pain-stat { font-size: 20px; color: var(--ochre); }
-  .case-pain-label { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .work-card-status {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ochre);
+  }
 
-  .case-solution { margin-bottom: 40px; }
-  .case-solution > h4 { font-size: 14px; font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ochre); margin-bottom: 8px; }
-  .case-solution > p { font-size: 15px; color: var(--driftwood); line-height: 1.75; margin-bottom: 24px; }
+  .work-card h3 {
+    margin-top: 8px;
+    font-size: 22px;
+  }
 
-  .case-ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .case-op { padding: 20px; border: 1px solid var(--limestone); border-radius: 3px; background: var(--nordic-light); }
-  .case-op h5 { font-family: var(--font-display); font-size: 16px; font-weight: 400; color: var(--navy); margin-bottom: 6px; }
-  .case-op p { font-size: 13px; color: var(--driftwood); line-height: 1.6; }
-  .case-op-result { font-family: var(--font-display); font-size: 16px; color: var(--navy); display: block; margin-bottom: 6px; }
+  .work-card p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--driftwood);
+    line-height: 1.7;
+  }
 
-  .case-results-block h4 { font-size: 14px; font-family: var(--font-mono); font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; color: var(--ochre); margin-bottom: 16px; }
+  .work-card-tags {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
 
-  .case-before-after { border: 1px solid var(--limestone); border-radius: 3px; overflow: hidden; margin-bottom: 24px; }
-  .ba-row { display: grid; grid-template-columns: 1fr 1fr 1fr; padding: 12px 20px; border-bottom: 1px solid var(--limestone); font-size: 14px; }
-  .ba-row:last-child { border-bottom: none; }
-  .ba-label { font-weight: 600; color: var(--navy); }
-  .ba-before { color: var(--sandstone); }
-  .ba-after { color: var(--navy); font-weight: 500; }
+  .work-card-arrow {
+    font-size: 20px;
+    color: var(--sandstone);
+    flex-shrink: 0;
+  }
 
-  .case-note { font-family: var(--font-mono); font-size: 12px; color: var(--sandstone); }
+  .work-more {
+    padding: 24px 0 0;
+    text-align: center;
+  }
 
-  .testimonial { margin-top: 40px; padding: 32px; border-left: 3px solid var(--ochre); background: var(--parchment); border-radius: 0 3px 3px 0; }
-  .testimonial-quote { font-family: var(--font-display); font-size: 20px; line-height: 1.5; color: var(--navy); margin: 0; font-style: italic; }
-  .testimonial-author { margin-top: 16px; display: flex; flex-direction: row; align-items: center; gap: 12px; }
-  .testimonial-photo { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-  .testimonial-author-info { display: flex; flex-direction: column; gap: 2px; }
-  .testimonial-name { font-family: var(--font-body); font-size: 14px; font-weight: 600; color: var(--navy); }
-  .testimonial-role { font-family: var(--font-mono); font-size: 11px; color: var(--sandstone); }
-
-  @media (max-width: 1024px) {
-    .case-pain-grid { grid-template-columns: 1fr 1fr; }
-    .case-ops-grid { grid-template-columns: 1fr; }
+  .work-more p {
+    font-size: 13px;
+    color: var(--sandstone);
+    font-style: italic;
   }
 
   @media (max-width: 768px) {
-    .case-pain-grid { grid-template-columns: 1fr; }
-    .ba-row { grid-template-columns: 1fr; gap: 2px; padding: 16px 20px; }
-    .ba-before::before { content: 'Before: '; font-weight: 500; color: var(--driftwood); }
-    .ba-after::before { content: 'After: '; font-weight: 600; color: var(--ochre); }
+    .work-card {
+      flex-direction: column;
+    }
   }
 </style>

@@ -19,89 +19,82 @@ interface AnimatedMessage {
 /* ───── Data ───── */
 const STATIC_MESSAGES = [
   {
-    sender: 'Transaction Agent',
+    sender: 'Ops Agent',
     avatar: 'app' as const,
-    time: '8:41 AM',
-    text: 'Deal #4890 \u2014 55 Birch Ln: closing complete. File audited, all documents archived. \u2713 Closed',
+    time: '7:02 AM',
+    text: 'Morning brief: 14 orders overnight, 9 from Sweden, 3 from Germany. Best day this week.',
   },
   {
-    sender: 'Transaction Agent',
+    sender: 'Ops Agent',
     avatar: 'app' as const,
-    time: '9:02 AM',
-    text: 'Deal #4891 \u2014 118 Oak Ave: all 12 deadlines on track. Next due: appraisal, Apr 11.',
+    time: '9:15 AM',
+    text: 'Reorder check: Espresso House hasn\u2019t reordered in 47 days \u2014 usually every 30. Flagging for follow-up.',
   },
   {
-    sender: 'Jake Martinez',
-    avatar: { initials: 'JM', bg: '#4A7A62' },
-    time: '9:08 AM',
-    text: 'New listing agreement just signed for 742 Elm St. Contract coming through DocuSign now.',
+    sender: 'Pallav',
+    avatar: { initials: 'P', bg: '#4A7A62' },
+    time: '9:20 AM',
+    text: 'Good catch, I\u2019ll call them today.',
   },
 ];
 
 const ANIMATED_MESSAGES: AnimatedMessage[] = [
   {
-    sender: 'Transaction Agent',
-    avatar: 'app',
-    time: '9:14 AM',
-    text: 'New contract received via DocuSign. Parsed **14 deadlines** across 6 categories.',
+    sender: 'Pallav',
+    avatar: { initials: 'P', bg: '#4A7A62' },
+    time: '11:32 AM',
+    text: 'mark order #5521 as fulfilled',
+  },
+  {
+    grouped: true,
+    sender: 'Ops Agent',
+    time: '11:32 AM',
+    text: '',
     attachment: {
       type: 'info',
       lines: [
-        'Deal #4892 \u2014 742 Elm St | Buyer: Rivera Family | Closing: May 9 | Status: 14/14 tracked',
+        'Checking order #5521 in Shopify...',
       ],
     },
   },
   {
-    grouped: true,
-    sender: 'Transaction Agent',
-    time: '9:14 AM',
-    text: '',
-    attachment: {
-      type: 'warning',
-      lines: [
-        '\u26a0 Title search overdue \u2014 2 days past deadline',
-        'Title company has not submitted the preliminary report. Escalating to @sarah.broker. Reminder sent to First American Title.',
-      ],
-    },
-  },
-  {
-    sender: 'Sarah Brooks',
-    avatar: { initials: 'SB', bg: '#4A7A62' },
-    time: '9:16 AM',
-    text: "Thanks, I'll follow up with First American directly. Can you flag me if the inspection report isn't in by Thursday?",
-  },
-  {
-    sender: 'Transaction Agent',
+    sender: 'Ops Agent',
     avatar: 'app',
-    time: '9:16 AM',
-    text: "Done. Inspection reminder set for `Thu Apr 10, 9:00 AM`. I'll escalate to you if it's not received by then.",
+    time: '11:33 AM',
+    text: "Done \u2014 order **#5521** marked fulfilled. No tracking number attached, want me to flag that to the warehouse channel?",
     attachment: {
       type: 'success',
       lines: [
-        '\u2713 13 of 14 deadlines on track \u2014 Next due: inspection period closes Apr 14 (7 days). All parties notified.',
+        '\u2713 Shopify updated \u2014 no browser tab opened',
       ],
     },
   },
   {
+    sender: 'Pallav',
+    avatar: { initials: 'P', bg: '#4A7A62' },
+    time: '11:33 AM',
+    text: 'yes please',
+  },
+  {
     grouped: true,
-    sender: 'Transaction Agent',
-    time: '9:16 AM',
+    sender: 'Ops Agent',
+    time: '11:33 AM',
     text: '',
-    reactions: ['\ud83d\udc4d 2', '\u2713 1'],
+    reactions: ['\ud83d\udc4d 1'],
   },
 ];
 
 const CHANNELS = [
-  { name: 'deal-4892', active: true },
-  { name: 'commissions', badge: '1' },
-  { name: 'listings' },
-  { name: 'compliance' },
+  { name: 'shopify-orders', active: true },
+  { name: 'drive-docs' },
+  { name: 'notion-kb' },
+  { name: 'trello-tasks' },
 ];
 
 const AGENTS = [
-  { name: 'transaction-agent', online: true },
-  { name: 'commission-agent', online: true },
-  { name: 'listing-agent', online: false },
+  { name: 'shopify-agent', online: true },
+  { name: 'drive-agent', online: true },
+  { name: 'notion-agent', online: false },
 ];
 
 /* ───── Helpers ───── */
@@ -246,8 +239,8 @@ export default function SlackChat() {
       {/* Sidebar */}
       <div className="slack-sidebar">
         <div className="slack-workspace">
-          <div className="slack-ws-icon">A</div>
-          <span className="slack-ws-name">Acme RE</span>
+          <div className="slack-ws-icon">S</div>
+          <span className="slack-ws-name">Silk Route</span>
         </div>
 
         <div className="slack-section-label">Channels</div>
@@ -271,8 +264,8 @@ export default function SlackChat() {
       {/* Main */}
       <div className="slack-main">
         <div className="slack-header">
-          <span className="slack-header-channel">#deal-4892</span>
-          <span className="slack-header-meta">{'\u2014'} 742 Elm St {'\u2014'} Johnson/Rivera</span>
+          <span className="slack-header-channel">#shopify-orders</span>
+          <span className="slack-header-meta">{'\u2014'} Silk Route AB {'\u2014'} Telegram</span>
         </div>
 
         <div className="slack-messages" ref={messagesRef}>
@@ -359,7 +352,7 @@ export default function SlackChat() {
         </div>
 
         <div className="slack-input">
-          <span>Message #deal-4892</span>
+          <span>Message #shopify-orders</span>
         </div>
       </div>
     </div>

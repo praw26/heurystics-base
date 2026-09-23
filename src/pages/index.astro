@@ -1,220 +1,127 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTABlock from '../components/CTABlock.astro';
 import SlackChat from '../components/SlackChat.tsx';
 import '../styles/slack.css';
+
+const caseStudies = (await getCollection('case-studies')).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+const featured = caseStudies[0];
 ---
 
 <BaseLayout
-  title="Heurystics — AI That Runs Your Real Estate Operations"
-  description="Heurystics automates the repetitive operations holding your real estate business back. Document chasing, deal tracking, after-hours inquiries, onboarding. Results in weeks."
+  title="Heurystics — AI Deployment, Now and For Real"
+  description="I find the boring, manual, repetitive stuff in a business's workflow and build small AI tools and connectors that save time. Every project becomes a public case study."
 >
 
   <!-- ===== 1. HERO ===== -->
   <section class="section hero-section">
     <div class="container hero-grid">
       <div class="hero-text">
-        <p class="hero-who fade-up">For managing brokers, broker-owners, and operations leads</p>
+        <p class="hero-who fade-up">AI deployment, now and for real</p>
         <h1 class="fade-up delay-1">
-          We automate the dull parts so you can focus on the <em class="hero-em">important ones.</em>
+          I find the use case, then <em class="hero-em">deploy AI</em> that actually runs it.
         </h1>
         <p class="lead hero-body fade-up delay-2">
-          Document chasing. Commission reconciliation. After-hours inquiries nobody answers.
-          Deals stalling because nobody can see the pipeline. We come in, study how your
-          operation works, and build AI systems that take over these workflows. Custom to you,
-          running around the clock, inside the tools your team already uses.
+          Heurystics is my playground for putting AI to real, practical use inside businesses.
+          I look for the boring, manual, repetitive stuff in a workflow, then build small AI
+          tools and connectors that save time — inside the tools you already use, not another
+          dashboard to check.
         </p>
         <div class="hero-buttons fade-up delay-3">
-          <a href="#book" class="btn btn-primary">Book an assessment</a>
-          <a href="/work" class="btn btn-outline">See our previous work &rarr;</a>
+          <a href="/work" class="btn btn-primary">See the work &rarr;</a>
+          <a href="#book" class="btn btn-outline open-modal">Got a process worth automating? &rarr;</a>
         </div>
-        <p class="hero-friction fade-up delay-3">30 minutes. No commitment. No sales pitch.</p>
+        <p class="hero-friction fade-up delay-3">Every project becomes a public case study — what got built, how, and whether it actually worked.</p>
       </div>
       <div class="hero-visual fade-up delay-3">
         <SlackChat client:visible />
-        <p class="slack-caption">AI coordinating a live deal. Tracking deadlines, flagging overdue items, notifying the right people. No one had to ask it to.</p>
+        <p class="slack-caption">A real agent I built for my own company, controlled entirely from Telegram. Full write-up in the work section.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== LOGO STRIP ===== -->
-  <div class="logo-strip">
-    <div class="container logo-strip-inner">
-      <div class="logo-strip-logos">
-        <!-- NUG - bold caps wordmark like their actual branding -->
-        <svg viewBox="0 0 72 28" class="logo-item">
-          <text x="0" y="23" font-family="'DM Serif Display', Georgia, serif" font-weight="400" font-size="26" letter-spacing="3" fill="currentColor">NUG</text>
-        </svg>
-        <!-- openigloo - lowercase like their actual brand -->
-        <svg viewBox="0 0 130 28" class="logo-item">
-          <text x="0" y="21" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="18" fill="currentColor">openigloo</text>
-        </svg>
-        <!-- Almi - clean sans like their actual logo -->
-        <svg viewBox="0 0 70 28" class="logo-item">
-          <text x="0" y="22" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="24" fill="currentColor">Almi</text>
-        </svg>
-        <!-- Stockholm University / Business School -->
-        <svg viewBox="0 0 110 30" class="logo-item sbs-logo">
-          <text x="0" y="13" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="11" letter-spacing="1.5" fill="currentColor">STOCKHOLM</text>
-          <text x="0" y="27" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="11" fill="currentColor">Business School</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===== 2. PROOF: What our team has built ===== -->
-  <section class="section" id="proof">
+  <!-- ===== 2. WHAT I DO ===== -->
+  <section class="section" id="what-i-do">
     <div class="container">
-      <p class="eyebrow fade-up">Our previous work</p>
-      <h2 class="fade-up delay-1">AI operations running in production. Today.</h2>
-
-      <div class="proof-grid fade-up delay-2">
-        <!-- Case 1: RE Brokerage -->
-        <div class="proof-card-block">
-          <div class="proof-card-img-wrap">
-            <img src="/images/proof-brokerage.png" alt="Modern real estate brokerage office" class="proof-card-img" width="576" height="200" loading="lazy" />
-            <div class="proof-card-overlay">
-              <span class="proof-card-tag mono">REAL ESTATE BROKERAGE</span>
-              <span class="proof-card-headline">100+ agents &middot; California</span>
-            </div>
-          </div>
-          <div class="proof-card-body">
-            <p>Built 8 AI operations for a California brokerage. Deal tracking, commission reconciliation, listing launches, compliance, lead intelligence, property management, market analysis, and business reporting.</p>
-            <div class="proof-card-stats">
-              <span><strong>Commission errors</strong> went to near zero</span>
-              <span><strong>20-25 hrs/week</strong> of manual work eliminated</span>
-              <span><strong>6 weeks</strong> to full deployment</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Case 2: Pharmacy chain -->
-        <div class="proof-card-block">
-          <div class="proof-card-img-wrap">
-            <img src="/images/proof-retail.png" alt="Modern pharmacy retail store" class="proof-card-img" width="576" height="200" loading="lazy" />
-            <div class="proof-card-overlay">
-              <span class="proof-card-tag mono">MULTI-LOCATION RETAIL</span>
-              <span class="proof-card-headline">5+ stores &middot; California</span>
-            </div>
-          </div>
-          <div class="proof-card-body">
-            <p>Built the full operations platform for a pharmacy chain. POS, inventory, vendor management, marketing campaigns, demand forecasting. Then deployed 8 AI operations on top that run the business.</p>
-            <div class="proof-card-stats">
-              <span><strong>8 AI operations</strong> running 24/7</span>
-              <span><strong>5+ locations</strong> on one system</span>
-              <span><strong>12 weeks</strong> to full deployment</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="proof-note fade-up">
-        <a href="/work" class="btn btn-navy" style="margin-top: 8px;">Read the full case studies &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 3. WHAT CHANGES: Concrete, relatable examples ===== -->
-  <section class="section" id="what-changes">
-    <div class="container">
-      <p class="eyebrow fade-up">What changes for you</p>
-      <h2 class="fade-up delay-1">Real examples of what starts running itself.</h2>
+      <p class="eyebrow fade-up">What I do</p>
+      <h2 class="fade-up delay-1">Not an industry. A pattern I look for anywhere.</h2>
 
       <div class="use-case-cards">
         <div class="use-case-card card fade-up">
           <div class="uc-top navy-bg">
             <div class="uc-stat-group">
-              <span class="uc-stat-number">0</span>
-              <span class="uc-stat-desc">missed deadlines</span>
+              <span class="uc-stat-number">01</span>
+              <span class="uc-stat-desc">Find the use case</span>
             </div>
           </div>
           <div class="uc-body">
-            <h4>Manage documents from your team chat</h4>
-            <p>Missing signatures, incomplete disclosures, overdue title searches. Flagged and chased automatically inside Slack or Teams. Your team never opens a spreadsheet to track a file again.</p>
-            <span class="deploy-time">Live in 2–3 weeks</span>
+            <h4>Watch how you actually work</h4>
+            <p>Not a workshop, not a survey. I sit with how a team actually operates and find the specific task that's boring, repetitive, and worth automating — and I'll say so if there isn't one yet.</p>
           </div>
         </div>
 
         <div class="use-case-card card fade-up delay-1">
           <div class="uc-top navy-bg">
             <div class="uc-stat-group">
-              <span class="uc-stat-number">&lt;60s</span>
-              <span class="uc-stat-desc">response time, 24/7</span>
+              <span class="uc-stat-number">02</span>
+              <span class="uc-stat-desc">Build the tool</span>
             </div>
           </div>
           <div class="uc-body">
-            <h4>Answer after-hours inquiries about specific deals</h4>
-            <p>A prospect asks about 742 Elm St at 9 PM. They get an immediate, knowledgeable response. Not voicemail. Tours booked, questions answered, leads routed. Your firm never goes dark.</p>
-            <span class="deploy-time">Live in 2 weeks</span>
+            <h4>Wire it into what you already use</h4>
+            <p>Small, scoped AI agents and connectors — Shopify, Drive, Notion, Slack, Telegram, whatever the team lives in. No new tool for people to learn.</p>
           </div>
         </div>
 
         <div class="use-case-card card fade-up delay-2">
           <div class="uc-top navy-bg">
             <div class="uc-stat-group">
-              <span class="uc-stat-number">40+</span>
-              <span class="uc-stat-desc">deals tracked live</span>
+              <span class="uc-stat-number">03</span>
+              <span class="uc-stat-desc">Prove it works</span>
             </div>
           </div>
           <div class="uc-body">
-            <h4>Always know what stage every deal is at</h4>
-            <p>Every active deal gets a live health score. You see which ones are on track, which are stalling, and why. Without asking anyone. Status meetings become unnecessary.</p>
-            <span class="deploy-time">Live in 2–3 weeks</span>
-          </div>
-        </div>
-
-        <div class="use-case-card card fade-up delay-3">
-          <div class="uc-top navy-bg">
-            <div class="uc-stat-group">
-              <span class="uc-stat-number">instant</span>
-              <span class="uc-stat-desc">across every document</span>
-            </div>
-          </div>
-          <div class="uc-body">
-            <h4>Search every deal, document, and note instantly</h4>
-            <p>Years of past deals, inspection reports, and playbooks. Searchable in plain English. New hires productive on day one. Institutional knowledge stops walking out the door.</p>
-            <span class="deploy-time">Live in 2 weeks</span>
+            <h4>Publish what actually happened</h4>
+            <p>What got built, how, and whether it held up in real use — including what didn't work. Getting an agent connected is the easy 20%. Making it reliable is the hard 80%, and that's the part I document.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 4. HOW IT WORKS: Explore → Pilot → Results → Retain ===== -->
-  <section class="section how-section" id="how-it-works">
-    <div class="container how-container">
-      <p class="eyebrow fade-up">How we work</p>
-      <h2 class="fade-up delay-1">We simplify your pain points.</h2>
-      <p class="lead how-lead fade-up delay-2">
-        Not a chatbot. Not a dashboard. Not another tool your team has to learn.
+  <!-- ===== 3. FEATURED CASE STUDY ===== -->
+  {featured && (
+    <section class="section section-limestone" id="featured-work">
+      <div class="container">
+        <p class="eyebrow fade-up">Latest work</p>
+        <h2 class="fade-up delay-1">{featured.data.title}</h2>
+        <p class="lead fade-up delay-2" style="max-width: 640px; margin-top: 12px;">{featured.data.summary}</p>
+        <div class="work-card-tags fade-up delay-3" style="margin-top: 20px;">
+          {featured.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+        <a href={`/work/${featured.slug}`} class="btn btn-navy fade-up delay-3" style="margin-top: 28px;">Read the full case study &rarr;</a>
+      </div>
+    </section>
+  )}
+
+  <!-- ===== 4. WHERE THIS GOES ===== -->
+  <section class="section" id="where-this-goes">
+    <div class="container" style="max-width: 720px;">
+      <p class="eyebrow fade-up">Where this goes</p>
+      <h2 class="fade-up delay-1">Employment, consulting, or founding — the near-term work is the same.</h2>
+      <p class="lead fade-up delay-2" style="margin-top: 16px;">
+        I'm building real systems, documenting them honestly, and sharing them openly — whether
+        that leads to a contract role as an AI enablement / forward-deployed engineer, ongoing
+        consulting work, or something I end up building on my own. Previously 8+ years across
+        data strategy, solution development, and autonomous systems, and co-founder of Silk Route,
+        Scandinavia's first premium instant-chai brand. More on <a href="/about">the About page</a>.
       </p>
-
-      <div class="how-steps-grid fade-up delay-3">
-        <div class="how-step-card">
-          <span class="how-step-num mono">01</span>
-          <span class="how-step-label">Explore</span>
-          <p>We map your workflows and find where time and money are leaking. 30 minutes. You keep the findings whether you hire us or not.</p>
-        </div>
-        <div class="how-step-card">
-          <span class="how-step-num mono">02</span>
-          <span class="how-step-label">Pilot</span>
-          <p>We pick the highest-impact problem and build AI that handles it. Real data, real workflows. You see results in 2–4 weeks.</p>
-        </div>
-        <div class="how-step-card">
-          <span class="how-step-num mono">03</span>
-          <span class="how-step-label">Results</span>
-          <p>You measure the outcomes yourself. Hours saved, errors caught, deals rescued. The numbers speak. No lock-in.</p>
-        </div>
-        <div class="how-step-card">
-          <span class="how-step-num mono">04</span>
-          <span class="how-step-label">Retain</span>
-          <p>Working? We stay and add the next workflow. Not working? You stop. No lock-in, just outcomes that compound.</p>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- ===== 5. CTA (straight after pipeline, no $250K stat) ===== -->
   <CTABlock />
 
 </BaseLayout>

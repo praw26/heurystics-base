@@ -1,0 +1,125 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABlock from '../../components/CTABlock.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('case-studies');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'case-studies'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={`${entry.data.title} — Heurystics`} description={entry.data.summary}>
+
+  <section class="section">
+    <div class="container" style="max-width: 760px;">
+      <a href="/work" class="back-link fade-up">&larr; All work</a>
+      <p class="eyebrow fade-up delay-1" style="margin-top: 24px;">{entry.data.status}</p>
+      <h1 class="fade-up delay-2">{entry.data.title}</h1>
+      <div class="work-card-tags fade-up delay-3" style="margin-top: 20px;">
+        {entry.data.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container case-study-content fade-up">
+      <Content />
+    </div>
+  </section>
+
+  <CTABlock />
+
+</BaseLayout>
+
+<style is:global>
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--sandstone);
+  }
+
+  .back-link:hover {
+    color: var(--ochre);
+  }
+
+  .case-study-content {
+    max-width: 760px;
+  }
+
+  .case-study-content h2 {
+    margin-top: 48px;
+    margin-bottom: 12px;
+    font-size: 24px;
+  }
+
+  .case-study-content h3 {
+    margin-top: 32px;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  .case-study-content p {
+    font-size: 15px;
+    color: var(--driftwood);
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+
+  .case-study-content ul {
+    padding-left: 22px;
+    margin-bottom: 16px;
+  }
+
+  .case-study-content li {
+    font-size: 14px;
+    color: var(--driftwood);
+    line-height: 1.75;
+    margin-bottom: 6px;
+  }
+
+  .case-study-content strong {
+    color: var(--navy);
+  }
+
+  .case-study-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+
+  .case-study-content th,
+  .case-study-content td {
+    text-align: left;
+    padding: 10px 14px;
+    border: 1px solid var(--limestone);
+  }
+
+  .case-study-content th {
+    background: var(--navy);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+  }
+
+  .case-study-content code {
+    background: var(--parchment);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 13px;
+  }
+</style>
