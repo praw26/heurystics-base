@@ -15,14 +15,14 @@ const { current = '' } = Astro.props;
 </header>
 
 <style>
-  header.site { position: sticky; top: 0; z-index: 20; background: rgba(14,15,17,0.86); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  header.site { position: sticky; top: 0; z-index: 20; background: rgba(246,243,236,0.86); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
-  .logo { font-family: var(--display); font-weight: 600; font-size: 17px; letter-spacing: 0.02em; text-decoration: none; }
+  .logo { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; text-decoration: none; }
   .logo span { color: var(--accent); }
   nav.links { display: flex; gap: 28px; align-items: center; }
-  nav.links a { font-family: var(--sans); font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color .15s ease; }
+  nav.links a { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color .15s ease; }
   nav.links a:hover, nav.links a:focus-visible { color: var(--text); }
   nav.links a.active { color: var(--text); }
-  .nav-cta { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--bg) !important; background: var(--accent); padding: 8px 16px; border-radius: 3px; text-decoration: none; }
+  .nav-cta { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--accent-ink) !important; background: var(--accent); padding: 9px 18px; border-radius: 999px; text-decoration: none; }
   @media (max-width: 640px) { nav.links a:not(.nav-cta) { display: none; } }
 </style>
