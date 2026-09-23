@@ -3,9 +3,8 @@
   "configurations": [
     {
       "name": "heurystics-dev",
-      "runtimeExecutable": "/opt/homebrew/bin/node",
-      "env": { "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin" },
-      "runtimeArgs": ["./node_modules/.bin/astro", "dev"],
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
       "port": 4321
     }
   ]

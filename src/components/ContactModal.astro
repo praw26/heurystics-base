@@ -72,46 +72,37 @@
     });
   });
 
-  // Form submission
+  // Form submission — build a mailto: link (static hosting, no backend)
   const modalForm = document.getElementById('modal-assessment-form');
-  modalForm?.addEventListener('submit', async (e) => {
+  modalForm?.addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = modalForm.querySelector('.form-submit') as HTMLButtonElement;
     const originalText = btn.innerHTML;
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
 
     const formData = new FormData(modalForm);
-    const data = Object.fromEntries(formData);
+    const data = Object.fromEntries(formData) as Record<string, string>;
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
+    const subject = `Assessment request from ${data.name}${data.company ? ' (' + data.company + ')' : ''}`;
+    const bodyLines = [
+      `Name: ${data.name}`,
+      `Email: ${data.email}`,
+      `Company: ${data.company}`,
+      data.role ? `Role: ${data.role}` : null,
+      data.message ? `Biggest operational headache: ${data.message}` : null,
+    ].filter(Boolean);
 
-      if (!res.ok) throw new Error('Server error');
+    const mailto = `mailto:hello@heurystics.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+    window.location.href = mailto;
 
-      btn.textContent = 'Sent! We\'ll be in touch.';
-      btn.style.background = '#4A7A62';
+    btn.textContent = 'Opening your email app...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      closeModal();
       modalForm.reset();
-
-      setTimeout(() => {
-        closeModal();
-        btn.innerHTML = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 2500);
-    } catch (err) {
-      btn.textContent = 'Something went wrong. Try again.';
-      btn.style.background = '#c0392b';
-      setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 3000);
-    }
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+    }, 1500);
   });
 
   // Expose globally for nav button
