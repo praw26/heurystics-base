@@ -17,7 +17,6 @@ import Layout from '../layouts/Layout.astro';
       <h2 class="h">What we do</h2>
       <p class="body">We help businesses find real use cases and put AI to work — identifying the boring, manual, repetitive stuff in a workflow, then building small AI tools and connectors that save time and improve efficiency.</p>
       <p class="body">We're currently also open to contract engagements: AI requirements engineering, AI product management, AI forward deployed engineering, data analysis, and business analysis.</p>
-      <p class="body aside">Yes, we wrote the copy on this page ourselves. No agency, no ghostwriter — same rule as everything else here.</p>
     </div>
   </section>
 
@@ -31,7 +30,7 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .page-head { padding: 64px 0 8px; }
+  .page-head { padding-top: 64px; padding-bottom: 8px; }
   .about-hero { display: flex; gap: 28px; align-items: flex-start; position: relative; }
   .about-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid var(--panel); box-shadow: 0 6px 18px rgba(22,21,15,0.12); transform: rotate(-3deg); }
   .about-deer { position: absolute; top: -28px; right: -4px; width: 110px; height: auto; transform: rotate(6deg); opacity: 0.9; pointer-events: none; }
@@ -40,7 +39,6 @@ import Layout from '../layouts/Layout.astro';
   p.lead { color: var(--text-muted); font-size: 18px; max-width: 54ch; margin: 0; }
   h2.h { font-family: var(--display); font-weight: 600; font-size: 20px; margin: 0 0 14px; }
   p.body { color: var(--text-muted); font-size: 16px; margin: 0 0 14px; }
-  p.body.aside { font-family: var(--mono); font-size: 13px; color: var(--text-dim); }
 
   @media (max-width: 560px) {
     .about-hero { flex-direction: column; align-items: flex-start; }

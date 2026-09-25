@@ -2,7 +2,7 @@
 interface Props { current?: string; }
 const { current = '' } = Astro.props;
 ---
-<header class="site">
+<header class="site" id="main-nav">
   <div class="wrap nav-inner">
     <a href="/" class="logo">HEUR<span>Y</span>STICS<span class="logo-dot" aria-hidden="true"></span></a>
     <nav class="links">
@@ -11,12 +11,27 @@ const { current = '' } = Astro.props;
       <a href="/about" class={current === 'about' ? 'active' : ''}>About</a>
       <a href="/contact" class="nav-cta">Get in touch</a>
     </nav>
+    <div class="nav-actions">
+      <a href="/contact" class="nav-cta nav-cta-mobile">Get in touch</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" class={current === 'home' ? 'active' : ''}>Home</a>
+    <a href="/work" class={current === 'work' ? 'active' : ''}>Work</a>
+    <a href="/about" class={current === 'about' ? 'active' : ''}>About</a>
+    <a href="/contact" class={current === 'contact' ? 'active' : ''}>Contact</a>
   </div>
 </header>
 
 <style>
-  header.site { position: sticky; top: 0; z-index: 20; background: rgba(246,243,236,0.86); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  header.site { position: sticky; top: 0; z-index: 20; background: rgba(246,243,236,0.94); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding-top: 18px; padding-bottom: 18px; }
   .logo { font-family: var(--display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; text-decoration: none; display: inline-flex; align-items: center; }
   .logo span { color: var(--accent); }
   .logo-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-left: 6px; box-shadow: 0 0 0 3px rgba(65,105,225,0.15); animation: pulse 2.4s ease-in-out infinite; }
@@ -25,6 +40,69 @@ const { current = '' } = Astro.props;
   nav.links a { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color .15s ease; }
   nav.links a:hover, nav.links a:focus-visible { color: var(--text); }
   nav.links a.active { color: var(--text); }
-  .nav-cta { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--accent-ink) !important; background: var(--accent); padding: 9px 18px; border-radius: 999px; text-decoration: none; }
-  @media (max-width: 640px) { nav.links a:not(.nav-cta) { display: none; } }
+  .nav-cta { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--accent-ink) !important; background: var(--accent); padding: 9px 18px; border-radius: 999px; text-decoration: none; white-space: nowrap; }
+
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+  .nav-cta-mobile { display: none; }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .hamburger span { display: block; width: 100%; height: 2px; background: var(--text); border-radius: 1px; transition: transform 0.2s ease, opacity 0.2s ease; }
+  .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 8px 28px 24px;
+    gap: 4px;
+    border-top: 1px solid var(--border);
+  }
+  .mobile-menu a {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a.active { color: var(--accent); }
+  .mobile-menu.open { display: flex; }
+
+  @media (max-width: 640px) {
+    nav.links { display: none; }
+    .nav-cta-mobile { display: inline-block; }
+    .hamburger { display: flex; }
+  }
 </style>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
