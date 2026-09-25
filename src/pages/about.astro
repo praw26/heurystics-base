@@ -7,41 +7,25 @@ import Layout from '../layouts/Layout.astro';
     <img src="/images/pallav.jpg" alt="Pallav Rawat" class="about-photo" width="120" height="120" loading="eager" />
     <div>
       <div class="section-label">// about</div>
-      <h1 class="page-title">A one-person consultancy, in practice.</h1>
-      <p class="lead">Heurystics is Pallav — this is a personal playground as much as a practice. Every use case, working or not, gets written up in public.</p>
+      <h1 class="page-title">An AI consultancy, in practice.</h1>
+      <p class="lead">Heurystics is run by Pallav Rawat — part consultancy, part public playground. Every use case, working or not, gets written up in public.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap narrow">
-      <h2 class="h">What I do</h2>
-      <p class="body">I help businesses find real use cases and put AI to work — identifying the boring, manual, repetitive stuff in a workflow, then building small AI tools and connectors that save time and improve efficiency.</p>
-      <p class="body">I'm currently also open to contract engagements: AI requirements engineering, AI product management, AI forward deployed engineering, data analysis, and business analysis.</p>
-      <p class="body aside">Yes, I wrote the copy on this page myself. No agency, no ghostwriter — same rule as everything else here.</p>
+      <h2 class="h">What we do</h2>
+      <p class="body">We help businesses find real use cases and put AI to work — identifying the boring, manual, repetitive stuff in a workflow, then building small AI tools and connectors that save time and improve efficiency.</p>
+      <p class="body">We're currently also open to contract engagements: AI requirements engineering, AI product management, AI forward deployed engineering, data analysis, and business analysis.</p>
+      <p class="body aside">Yes, we wrote the copy on this page ourselves. No agency, no ghostwriter — same rule as everything else here.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap narrow">
-      <h2 class="h">Background</h2>
-      <div class="timeline">
-        <div class="t-row">
-          <div class="when">SEP 2026 —<br>PRESENT</div>
-          <div><div class="role">Co-Owner, Silk Route AB</div><div class="desc">Automated operations, minimum daily involvement.</div></div>
-        </div>
-        <div class="t-row">
-          <div class="when">AUG 2026 —<br>PRESENT</div>
-          <div><div class="role">Consultant, Heurystics</div><div class="desc">AI deployment consulting — use-case discovery, small AI tools, and connectors for real businesses.</div></div>
-        </div>
-        <div class="t-row">
-          <div class="when">DEC 2024 —<br>AUG 2026</div>
-          <div><div class="role">Chief Executive Officer, Silk Route AB</div><div class="desc">Co-founded Scandinavia's first premium instant chai brand — built end-to-end across D2C, Amazon, and retail across Europe.</div></div>
-        </div>
-        <div class="t-row">
-          <div class="when">8+ YEARS<br>PRIOR</div>
-          <div><div class="role">Data, tech & analytics</div><div class="desc">Across data strategy, solution development, electrification, and autonomous systems.</div></div>
-        </div>
-      </div>
+      <h2 class="h">How we got here</h2>
+      <p class="body">Before Heurystics, we spent 8+ years across data, tech, and analytics — data strategy, solution development, electrification, and autonomous systems. In December 2024, we co-founded Silk Route AB, building Scandinavia's first premium instant chai brand from scratch: D2C, Amazon, and retail distribution across Europe. We ran it as CEO through August 2026, then stepped back into a part-time, co-owner role once the operations could run themselves.</p>
+      <p class="body">That transition is what led to Heurystics, full-time, since August 2026 — finding real AI use cases inside businesses and building the tools that handle them. Every project here, client work or personal, comes from the same instinct: find the boring task, automate it properly, show the work.</p>
     </div>
   </section>
 </Layout>
@@ -61,11 +45,4 @@ import Layout from '../layouts/Layout.astro';
   @media (max-width: 560px) {
     .about-hero { flex-direction: column; align-items: flex-start; }
   }
-
-  .timeline { margin-top: 8px; }
-  .t-row { display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--border); }
-  .t-row:first-child { border-top: none; }
-  .t-row .when { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); padding-top: 2px; }
-  .t-row .role { font-family: var(--display); font-size: 15.5px; font-weight: 600; margin-bottom: 5px; }
-  .t-row .desc { color: var(--text-muted); font-size: 14.5px; }
 </style>
