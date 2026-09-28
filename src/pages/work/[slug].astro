@@ -12,8 +12,20 @@ export async function getStaticPaths() {
 
 const { cs } = Astro.props;
 const { Content } = await cs.render();
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: cs.data.title,
+  description: cs.data.summary,
+  datePublished: cs.data.publishDate.toISOString().split('T')[0],
+  author: { '@type': 'Person', name: 'Pallav Rawat', url: 'https://heurystics.com/about' },
+  publisher: { '@type': 'Organization', name: 'Heurystics', url: 'https://heurystics.com/' },
+  keywords: cs.data.tags?.join(', '),
+};
 ---
 <Layout title={`${cs.data.title} — Heurystics`} description={cs.data.summary} current="work">
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   <section class="page-head wrap" style="border-top:none;">
     <div class="section-label">// case study</div>
     <h1 class="page-title">{cs.data.title}</h1>

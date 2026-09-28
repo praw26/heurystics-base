@@ -10,6 +10,36 @@ interface Props {
 }
 
 const { title, description = 'AI Deployment — find use cases and deploy AI in your business, now and for real.', current = '' } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://heurystics.com');
+const ogImage = new URL('/images/og-image.png', 'https://heurystics.com').toString();
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://heurystics.com/#person',
+      name: 'Pallav Rawat',
+      url: 'https://heurystics.com/about',
+      image: 'https://heurystics.com/images/pallav.jpg',
+      jobTitle: 'AI Consultant',
+      worksFor: { '@id': 'https://heurystics.com/#organization' },
+      sameAs: ['https://www.linkedin.com/in/pallav-rawat-9aa50b70'],
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': 'https://heurystics.com/#organization',
+      name: 'Heurystics',
+      url: 'https://heurystics.com/',
+      founder: { '@id': 'https://heurystics.com/#person' },
+      areaServed: 'Worldwide',
+      address: { '@type': 'PostalAddress', addressLocality: 'Stockholm', addressCountry: 'SE' },
+      description: 'AI deployment consultancy — finding real use cases and building small AI tools and connectors that save time.',
+      email: 'hello@heurystics.com',
+    },
+  ],
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +48,22 @@ const { title, description = 'AI Deployment — find use cases and deploy AI in 
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content={description} />
   <title>{title}</title>
+  <link rel="canonical" href={canonicalURL} />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Heurystics" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -25,6 +71,7 @@ const { title, description = 'AI Deployment — find use cases and deploy AI in 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 </head>
 <body>
   <Nav current={current} />

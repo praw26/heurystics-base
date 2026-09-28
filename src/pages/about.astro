@@ -1,7 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    q: 'What does Heurystics do?',
+    a: 'Heurystics finds real, practical AI use cases inside businesses — the boring, manual, repetitive parts of a workflow — and builds small AI tools and connectors that save time. Every project gets documented in public as a case study.',
+  },
+  {
+    q: 'Who runs Heurystics?',
+    a: 'Heurystics is run by Pallav Rawat, based in Stockholm, Sweden, with 8+ years of experience across data strategy, solution development, electrification, and autonomous systems.',
+  },
+  {
+    q: 'Is Heurystics available for contract work?',
+    a: 'Yes. Open to contract engagements in AI requirements engineering, AI product management, AI forward deployed engineering, data analysis, and business analysis.',
+  },
+  {
+    q: 'What industries does Heurystics work in?',
+    a: "Not locked to one industry — the pattern (finding a repetitive task worth automating) applies anywhere. The first public case study is an e-commerce operations agent built for Silk Route AB.",
+  },
+  {
+    q: 'How does a project usually start?',
+    a: "With a short, no-pitch conversation about what's actually eating time. If there's no real use case, that gets said upfront — before any build begins.",
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 <Layout title="About — Heurystics" current="about">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   <section class="page-head wrap about-hero" style="border-top:none;">
     <img src="/images/deer.png" alt="" aria-hidden="true" class="about-deer" width="160" height="229" loading="lazy" />
     <img src="/images/pallav.jpg" alt="Pallav Rawat" class="about-photo" width="120" height="120" loading="eager" />
@@ -27,6 +61,20 @@ import Layout from '../layouts/Layout.astro';
       <p class="body">That transition is what led to Heurystics, full-time, since August 2026 — finding real AI use cases inside businesses and building the tools that handle them. Every project here, client work or personal, comes from the same instinct: find the boring task, automate it properly, show the work.</p>
     </div>
   </section>
+
+  <section>
+    <div class="wrap narrow">
+      <h2 class="h">Questions people actually ask</h2>
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
@@ -39,6 +87,14 @@ import Layout from '../layouts/Layout.astro';
   p.lead { color: var(--text-muted); font-size: 18px; max-width: 54ch; margin: 0; }
   h2.h { font-family: var(--display); font-weight: 600; font-size: 20px; margin: 0 0 14px; }
   p.body { color: var(--text-muted); font-size: 16px; margin: 0 0 14px; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .faq-item { background: var(--panel); padding: 18px 20px; }
+  .faq-item summary { font-family: var(--display); font-weight: 600; font-size: 16px; color: var(--text); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: '+'; font-family: var(--mono); font-size: 20px; color: var(--accent); flex-shrink: 0; transition: transform 0.15s ease; }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p { color: var(--text-muted); font-size: 15px; line-height: 1.7; margin: 14px 0 0; }
 
   @media (max-width: 560px) {
     .about-hero { flex-direction: column; align-items: flex-start; }

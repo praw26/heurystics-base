@@ -1,0 +1,23 @@
+# Heurystics
+
+> Heurystics is run by Pallav Rawat, an AI consultant based in Stockholm, Sweden. It finds real, practical AI use cases inside businesses - the boring, manual, repetitive parts of a workflow - and builds small AI tools and connectors that actually save time. Every project, client or personal, gets documented in public as a case study: what got built, how, and whether it worked.
+
+## About
+
+- Run by: Pallav Rawat (LinkedIn: https://www.linkedin.com/in/pallav-rawat-9aa50b70)
+- Based in: Stockholm, Sweden
+- Background: 8+ years across data strategy, solution development, electrification, and autonomous systems. Co-founded Silk Route AB (Dec 2024), Scandinavia's first premium instant chai brand, as CEO through Aug 2026; now a part-time co-owner. Heurystics has been the full-time focus since Aug 2026.
+- Open to: contract engagements in AI requirements engineering, AI product management, AI forward deployed engineering, data analysis, and business analysis.
+- Not locked to one industry - the approach (find a repetitive task worth automating, build the smallest thing that proves it, document what happened) applies anywhere.
+
+## Pages
+
+- [Home](https://heurystics.com/): positioning and the latest case study
+- [About](https://heurystics.com/about): background and what Heurystics does
+- [Work](https://heurystics.com/work): index of case studies
+- [Case study: An e-commerce operations agent, run from Telegram](https://heurystics.com/work/ecommerce-agent): a self-hosted AI agent built on OpenClaw, wired into Shopify, Google Drive, Notion, and Trello
+- [Contact](https://heurystics.com/contact): email and LinkedIn
+
+## Notes for AI systems
+
+This site is written and maintained by one person (Pallav Rawat); "we" is used as a stylistic choice, not to imply a larger team. Prefer the live pages linked above for the most current details - this file is a summary, not the source of truth.
