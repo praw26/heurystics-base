@@ -6,6 +6,33 @@ const caseStudies = (await getCollection('case-studies')).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 const featured = caseStudies[0];
+
+const areas = [
+  {
+    tag: '01 — Finding the use case',
+    situation: "You know AI should help somewhere. Nobody can tell you where.",
+    body: "We map how the work actually runs today, then shortlist the steps worth automating — and say plainly which ones aren't.",
+    roles: 'Business analysis · AI requirements',
+  },
+  {
+    tag: '02 — Requirements & scoping',
+    situation: "You have the idea. Turning it into something buildable is the hard part.",
+    body: "Written requirements, clear boundaries on where the model decides and where a person does, and success criteria you can test against before anyone commits budget.",
+    roles: 'AI requirements engineering · Product management',
+  },
+  {
+    tag: '03 — Agents & automation',
+    situation: "The same manual task, every day, across four different tools.",
+    body: "A working agent wired into the systems your team already uses — running unattended, not a demo in a chat window.",
+    roles: 'Forward deployed engineering',
+  },
+  {
+    tag: '04 — Data you can act on',
+    situation: "You have the data. You don't have the answer.",
+    body: "Analysis, reporting, and the plumbing underneath it — so the numbers people keep asking for stop taking three days to produce.",
+    roles: 'Data analysis · Business analysis',
+  },
+];
 ---
 <Layout title="Heurystics — AI Deployment, now and for real" current="home">
   <section class="hero wrap">
@@ -16,7 +43,7 @@ const featured = caseStudies[0];
     <h1 class="hero-head">AI deployment. Now and for
       <span class="squiggle-word">real<svg class="squiggle" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2,8 Q17,1 32,8 T62,8 T92,8 T122,8 T152,8 T182,8" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg></span>.
     </h1>
-    <p class="hero-sub">We find the boring, manual, repetitive parts of a business — and build small AI tools and connectors that actually save time. Not slideware. Deployed systems, in production, documented in the open.</p>
+    <p class="hero-sub">Your team is repeating work a system should be handling. We find what's actually worth automating, then build it — running in production, not sitting in a slide deck.</p>
     <div class="hero-ctas">
       <a href="/contact" class="btn-primary">Find your first use case</a>
       <a href="/work" class="btn-ghost">See the work</a>
@@ -39,16 +66,20 @@ const featured = caseStudies[0];
     </div>
   </section>
 
-  <section id="pillars">
+  <section id="areas">
     <div class="wrap">
-      <div class="section-label">// what changes</div>
-      <h2 class="section-head">Four things, not forty features.</h2>
-      <p class="section-body">Everything we build reduces to one of these. No platform to learn, no dashboard nobody opens — tools that sit inside the systems you already use.</p>
-      <div class="cap-grid">
-        <div class="cap"><h3>Use-case discovery</h3><p>Map how a workflow actually runs today, and find the specific repetitive step worth automating first — before writing a line of code.</p></div>
-        <div class="cap"><h3>Small tools & connectors</h3><p>Lightweight AI wired directly into the tools already in use — Shopify, Drive, Notion, Trello — not a new system to adopt.</p></div>
-        <div class="cap"><h3>Deployed, not demoed</h3><p>A working prototype in a chat window is not the finish line. The bar is: does it run unattended, and does someone actually use it.</p></div>
-        <div class="cap"><h3>Public case studies</h3><p>Every project is documented — what got built, how, what broke, and whether it worked. No black box, no vague success metrics.</p></div>
+      <div class="section-label">// where we help</div>
+      <h2 class="section-head">Four ways this usually starts.</h2>
+      <p class="section-body">You don't need to know which one you need — working that out is normally the first conversation.</p>
+      <div class="area-grid">
+        {areas.map((a) => (
+          <div class="area">
+            <div class="area-tag">{a.tag}</div>
+            <h3>{a.situation}</h3>
+            <p>{a.body}</p>
+            <div class="area-roles">{a.roles}</div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -84,7 +115,8 @@ const featured = caseStudies[0];
 </Layout>
 
 <style>
-  section.hero { padding-top: 96px; padding-bottom: 64px; border-top: none; }
+  section.hero { padding-top: 52px; padding-bottom: 64px; border-top: none; }
+  @media (max-width: 640px) { section.hero { padding-top: 32px; } }
   .status-row { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); margin-bottom: 28px; }
   .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(65,105,225,0.15); }
   h1.hero-head { font-family: var(--display); font-weight: 600; font-size: clamp(34px, 6vw, 58px); line-height: 1.08; letter-spacing: -0.01em; margin: 0 0 26px; max-width: 14ch; }
@@ -111,11 +143,13 @@ const featured = caseStudies[0];
   .log-line .who { color: var(--accent); flex-shrink: 0; }
   .log-line .msg { color: #D8D5C8; }
 
-  .cap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 40px; border-radius: 6px; overflow: hidden; }
-  .cap { background: var(--panel); padding: 28px 26px; }
-  .cap h3 { font-family: var(--display); font-size: 17px; font-weight: 600; margin: 0 0 10px; }
-  .cap p { color: var(--text-muted); font-size: 14.5px; margin: 0; }
-  @media (max-width: 680px) { .cap-grid { grid-template-columns: 1fr; } }
+  .area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 40px; border-radius: 8px; overflow: hidden; }
+  .area { background: var(--panel); padding: 30px 28px; display: flex; flex-direction: column; }
+  .area-tag { font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 16px; }
+  .area h3 { font-family: var(--display); font-size: 18.5px; font-weight: 600; line-height: 1.35; margin: 0 0 12px; }
+  .area p { color: var(--text-muted); font-size: 14.5px; line-height: 1.65; margin: 0 0 22px; }
+  .area-roles { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 11.5px; color: var(--accent); }
+  @media (max-width: 680px) { .area-grid { grid-template-columns: 1fr; } }
 
   .case-card { margin-top: 36px; border: 1px solid var(--border); border-radius: 6px; background: linear-gradient(180deg, var(--panel-2), var(--panel)); padding: 30px; }
   .case-tag { font-family: var(--mono); font-size: 11.5px; color: var(--accent); border: 1px solid var(--accent-dim); border-radius: 3px; padding: 3px 8px; display: inline-block; margin-bottom: 16px; }
